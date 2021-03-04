@@ -1,0 +1,22 @@
+#chava-murillo account
+Host github.com-chava-murillo
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa
+  AddKeysToAgent yes
+  UseKeychain yes
+  ServerAliveInterval 600
+  TCPKeepAlive yes
+  IPQoS=throughput
+
+
+#salvador-murillo account
+Host github.com-salvador-murillo
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_cucea
+  AddKeysToAgent yes
+  UseKeychain yes
+  ServerAliveInterval 600
+  TCPKeepAlive yes
+  IPQoS=throughput

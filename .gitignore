@@ -1,6 +1,6 @@
 # Visual Studio Code
-*.vscode/
-*.vscode/*~
+*./vscode/
+*.vscode/*
 
 # Prerequisites
 *.d
@@ -36,7 +36,7 @@
 *.app
 
 # General
-.DS_Store
+*.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -55,4 +55,5 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+
 
