@@ -6,13 +6,14 @@ numeroPro=0
 echo $'\t\t\t'"Estructura de Datos"
 echo $'\n'"Seleccione programa a ejecutar:"$'\n'
 
-NOMBRES="
-0.test 
-1.marcos 
-2.diego"
+echo "00.Repaso - Manejo de Arreglos"
+echo "01.Repaso - Funciones"
+echo "3.test" $'\n'
 
-for i in $NOMBRES;
-do
-  echo $i
-done
+cd test
+
+
+
+clang++-7 -pthread -std=c++17 -o main main.cpp && ./main
+
 
