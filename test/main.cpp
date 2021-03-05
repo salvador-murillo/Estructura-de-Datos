@@ -6,5 +6,5 @@ Programa #Numero: Descripcion
 using namespace std;
 
 int main() {
-   cout << "jajajaja" << endl;
+   cout << "jajajajajajaja" << endl;
 }
