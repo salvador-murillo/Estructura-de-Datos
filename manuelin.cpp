@@ -6,5 +6,5 @@ Programa #1: lalalala
 using namespace std;
 
 int main() {
-   cout << "HOLA VACA" << endl;
+   cout << "HOLA TORO" << endl;
 }
