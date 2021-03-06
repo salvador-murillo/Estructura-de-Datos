@@ -26,7 +26,7 @@ read -p $'\n''Elige numero de programa: ' numeroPro
 cd "${PROGRAMAS2[$numeroPro-1]}"
 
 #make for macOS and clang for Repl.it
-clang++-7 -pthread -std=c++17 -o main main.cpp && ./main
+clang++-7 -pthread -std=c++17 -o main main.cpp || make main && ./main
 
 #|| make main 
 
