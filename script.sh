@@ -20,10 +20,9 @@ do
     read -p $'\n''Elige numero de programa: ' numeroPro
 
     cd "${PROGRAMAS[$numeroPro-1]}"
-    pwd
+    clear
     clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main
 
-    # clear
     read -p $'Volver a seleccion de programas? 1-SI 2-NO : ' salir
     if (($salir > 1))
         then

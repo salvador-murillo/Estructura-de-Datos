@@ -156,6 +156,7 @@ void mostrarResultados(int a[]){
 int main() {
 	int salir;
 	do {
+    cout << "\033[2J\033[0;0H";
 		cout << "\t\t\tREPASO DE ARREGLOS\n\n";
         int a[20];
 
