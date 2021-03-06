@@ -6,14 +6,26 @@ numeroPro=0
 echo $'\t\t\t'"Estructura de Datos"
 echo $'\n'"Seleccione programa a ejecutar:"$'\n'
 
-echo "00.Repaso - Manejo de Arreglos"
-echo "01.Repaso - Funciones"
-echo "3.test" $'\n'
+# PROGRAMAS=(
+#     '00.Repaso - Manejo de Arreglos' 
+#     '01.Repaso - Funciones' 
+#     '3.test' 
+#     '4.jar')
 
-cd test
+PROGRAMAS2=(
+    '1.Repaso-Manejo-Arreglos' 
+    '2.Repaso-Funciones' 
+    '3.test')
 
+for i in ${PROGRAMAS2[@]};
+do
+    echo "$i"
+done
 
+read -p $'\n''Elige numero de programa: ' numeroPro
+cd "${PROGRAMAS2[$numeroPro-1]}"
 
-clang++-7 -pthread -std=c++17 -o main main.cpp && ./main
+#make for macOS and clang for Repl.it
+make main || clang++-7 -pthread -std=c++17 -o main main.cpp && ./main
 
 
