@@ -156,7 +156,6 @@ void mostrarResultados(int a[]){
 int main() {
 	int salir;
 	do {
-        cout << "\033[2J\033[0;0H";
 		cout << "\t\t\tREPASO DE ARREGLOS\n\n";
         int a[20];
 
@@ -167,5 +166,6 @@ int main() {
 
         cout << "\nQuieres repetir el programa? Si (1) o No (2): ";
         cin >> salir;
+        cout << "\033[2J\033[0;0H";
     } while (salir != 2);
 }
