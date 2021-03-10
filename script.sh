@@ -18,9 +18,9 @@ do
 
     numeroPro=0
     read -p $'\n''Elige numero de programa: ' numeroPro
-
+    echo $'\n'"Cargando: Programa #${PROGRAMAS[$numeroPro-1]}"
     cd "${PROGRAMAS[$numeroPro-1]}"
-    clear
+    
     clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main
 
     read -p $'Volver a seleccion de programas? 1-SI 2-NO : ' salir
