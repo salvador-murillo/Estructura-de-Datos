@@ -140,25 +140,25 @@ int main() {
                }
                cout << "\nArreglo A: "; mostrarARR(arrA,tamanoA);
                cout << "\nArreglo B: "; mostrarARR(arrB,tamanoB);
-            }else if (menu==2 && checkArrA == true || checkArrB == true){
+            }else if (menu==2 && (checkArrA == true || checkArrB == true)){
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                cout << "\nArreglo D: "; mostrarARR(arrD,tamanoD);
-            }else if (menu==3 && checkArrA == true || checkArrB == true){
+            }else if (menu==3 && (checkArrA == true || checkArrB == true)){
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                cout << "\n  Pares: "; mostrarPar(arrD,tamanoD);
-            }else if (menu==4 && checkArrA == true || checkArrB == true){
+            }else if (menu==4 && (checkArrA == true || checkArrB == true)){
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                cout << "\nImpares: "; mostrarImpar(arrD,tamanoD);
-            }else if (menu==5 && checkArrA == true || checkArrB == true){
+            }else if (menu==5 && (checkArrA == true || checkArrB == true)){
                cout << "\nIngresa numero a buscar: ";
                cin >> numeroB;
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                buscarNumero(arrD, tamanoD, numeroB);
-            }else if (menu==6 && checkArrA == true || checkArrB == true){
+            }else if (menu==6 && (checkArrA == true || checkArrB == true)){
                
-            }else if (menu==7 && checkArrA == true || checkArrB == true){
+            }else if (menu==7 && (checkArrA == true || checkArrB == true)){
 
-            }else if (menu==8 && checkArrA == true || checkArrB == true){
+            }else if (menu==8 && (checkArrA == true || checkArrB == true)){
                
             }else{
                cout << "\nPrimero debes llenar un arreglo, selecciona opcion 1";
