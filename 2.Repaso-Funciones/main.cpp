@@ -93,7 +93,7 @@ void buscarNumero(int a[], int tam, int numeroB){
 }
 
 void mostrarPos(int a[], int posB){
-   cout << "\nEl valor en la pos " << posB << " es " << a[posB-1];
+   cout << "\nEl valor en la pos " << posB << " es " << a[posB];
 }
 
 void calcularNums(int a, int b, float &c){
