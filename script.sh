@@ -7,10 +7,11 @@ do
     echo $'\n'"Seleccione programa a ejecutar:"$'\n'
 
     PROGRAMAS=(
+        '0.Debug' 
         '1.R1-Manejo-Arreglos' 
         '2.R2-Funciones' 
-        '3.P1-Estructuras' 
-        'test')
+        '3.P1-Estructuras'
+    )
 
     for i in ${PROGRAMAS[@]};
     do
@@ -19,8 +20,8 @@ do
 
     numeroPro=0
     read -p $'\n''Elige numero de programa: ' numeroPro
-    echo $'\n'"Cargando: Programa #${PROGRAMAS[$numeroPro-1]}"
-    cd "${PROGRAMAS[$numeroPro-1]}"
+    echo $'\n'"Cargando: Programa #${PROGRAMAS[$numeroPro]}"
+    cd "${PROGRAMAS[$numeroPro]}"
     
     clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main
 
