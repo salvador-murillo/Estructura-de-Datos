@@ -1,6 +1,10 @@
 # Visual Studio Code
 *./vscode/
 */.vscode
+*.vscode
+
+# Debug Files
+*.dSYM
 
 # Prerequisites
 *.d
