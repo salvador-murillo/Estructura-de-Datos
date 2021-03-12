@@ -7,9 +7,10 @@ do
     echo $'\n'"Seleccione programa a ejecutar:"$'\n'
 
     PROGRAMAS=(
-        '1.Repaso-Manejo-Arreglos' 
-        '2.Repaso-Funciones' 
-        '3.test')
+        '1.R1-Manejo-Arreglos' 
+        '2.R2-Funciones' 
+        '3.P1-Estructuras' 
+        'test')
 
     for i in ${PROGRAMAS[@]};
     do

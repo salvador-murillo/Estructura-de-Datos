@@ -1,5 +1,5 @@
 /*Estructura de Datos
-  Programa #1 - Repaso Arreglos
+  Repaso #1 - Repaso Arreglos
   Salvador Murillo Arias
 */
 #include <iostream>

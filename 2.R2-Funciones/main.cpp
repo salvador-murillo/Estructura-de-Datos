@@ -1,6 +1,6 @@
 /*
 CUCEA | Estructura de Datos | Salvador Murillo Arias
-Programa #2: Repaso Funciones
+Repaso #2: Repaso Funciones
 */
 #include <iostream>
 #include <vector>
@@ -192,7 +192,7 @@ int main() {
             else if (menu==2 && (checkArrA == true || checkArrB == true))
             {
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
-               cout << "\nArreglo D: "; mostrarARR(arrD,tamanoD);
+               cout << "\nArreglo: "; mostrarARR(arrD,tamanoD);
             }
             else if (menu==3 && (checkArrA == true || checkArrB == true))
             {
