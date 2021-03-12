@@ -11,7 +11,8 @@ random_device rd;  // Obtiene un # random del dispositivo
 mt19937 gen(rd()); // Generador de numeros (Merssene Twister Algoritmo)
 uniform_int_distribution<> randNum(0,9); //Define rango de numeros
 
-int i, menu,contP,contI, numeroB, posicionB;
+int i, menu,contP,contI, numeroB, posicionA;
+float resBC=0;
 
 void randomARR(int a[], int tam){
     for(i=0;i<tam;i++){
@@ -67,7 +68,7 @@ void mostrarPar(int a[], int tam){
            contP++;
         }
     }
-   cout << "\nCantidad Pares: " << contP; 
+   cout << " Cantidad: " << contP; 
 }
 
 void mostrarImpar(int a[], int tam){
@@ -78,7 +79,7 @@ void mostrarImpar(int a[], int tam){
            contI++;
         }
    }
-   cout << "\nCantidad Impares: " << contI;
+   cout << " Cantidad: " << contI;
 }
 
 void buscarNumero(int a[], int tam, int numeroB){
@@ -92,12 +93,45 @@ void buscarNumero(int a[], int tam, int numeroB){
 }
 
 void mostrarPos(int a[], int posB){
-   cout << "\nEl valor en la pos " << posB << " es " << a[posB];
+   cout << "\nEl valor en la pos " << posB << " es " << a[posB-1];
 }
+
+void calcularNums(int a, int b, float &c){
+   int opcCal=0;
+   c=0;
+
+   cout << "\tMENU OPERACIONES\n";
+   cout << "\n1.-Suma";
+   cout << "\n2.-Resta";
+   cout << "\n3.-Multiplicacion";
+   cout << "\n4.-Division";
+   cout << "\n\nEscoge la operacion a realizar: ";
+   cin >> opcCal;
+
+   switch (opcCal)
+   {
+      case 1:
+         c=float(a+b);
+      break;
+      case 2:
+         c=float(a-b);
+      break;
+      case 3:
+         c=float(a*b);
+      break;
+      case 4:
+         c=float(a/b);
+      break;
+      default:
+         cout << "\nLo siento OPCION no valida";
+      break;
+   }
+}
+
 
 void mostrarMenu(int &menu){
    menu=0;
-   cout << "\033[2J\033[0;0H";
+   // cout << "\033[2J\033[0;0H";
    cout << "CUCEA | Estructura de Datos | Salvador Murillo Arias\n";
    cout << "\t   Programa #2: Repaso Funciones\n"; 
    
@@ -115,7 +149,7 @@ void mostrarMenu(int &menu){
 }
 
 int main() {
-
+   cout << "\033[2J\033[0;0H";
    // int A1[5]={ 0, 1, 2, 3, 4};// TEST
    // int B1[5]={ 10, 20, 30, 40, 50}; // TEST
    
@@ -124,6 +158,9 @@ int main() {
    int arrA[tamanoA];
    int arrB[tamanoB];
    int arrD[tamanoD];
+
+   int posicionB;
+   int posicionC;
    
    do{
       int salirMenu=1;
@@ -131,53 +168,79 @@ int main() {
       bool checkArrB = false;
       do{
          mostrarMenu(menu);
-         if(menu>=1 && menu<=8){
-
-            if(menu==1){
+         if(menu>=1 && menu<=8)
+         {
+            if(menu==1)
+            {
                int opcTam=0;
                opcTam=tamanoARR(tamanoA, tamanoB);
                if(opcTam==1){
                   randomARR(arrA,tamanoA);
                   checkArrA = true;
-                  cout << "\nAntes   A: "; mostrarARR(arrA,tamanoA);// TEST
+                  // cout << "\nAntes   A: "; mostrarARR(arrA,tamanoA);// TEST
                }else if(opcTam==2){
                   randomARR(arrB,tamanoB);
                   checkArrB = true; 
-                  cout << "\nAntes B: "; mostrarARR(arrB,tamanoB);// TEST
+                  // cout << "\nAntes B: "; mostrarARR(arrB,tamanoB);// TEST
                }else {
                   cout << "\nOpcion NO valida";
                }
 
-               cout << "\nDespues A: "; mostrarARR(arrA,tamanoA);// TEST
-               cout << "\nDespues B: "; mostrarARR(arrB,tamanoB); // TEST
-
-            }else if (menu==2 && (checkArrA == true || checkArrB == true)){
+               // cout << "\nDespues A: "; mostrarARR(arrA,tamanoA);// TEST
+               // cout << "\nDespues B: "; mostrarARR(arrB,tamanoB); // TEST
+            }
+            else if (menu==2 && (checkArrA == true || checkArrB == true))
+            {
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                cout << "\nArreglo D: "; mostrarARR(arrD,tamanoD);
-            }else if (menu==3 && (checkArrA == true || checkArrB == true)){
+            }
+            else if (menu==3 && (checkArrA == true || checkArrB == true))
+            {
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                cout << "\n  Pares: "; mostrarPar(arrD,tamanoD);
-            }else if (menu==4 && (checkArrA == true || checkArrB == true)){
+            }
+            else if (menu==4 && (checkArrA == true || checkArrB == true))
+            {
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                cout << "\nImpares: "; mostrarImpar(arrD,tamanoD);
-            }else if (menu==5 && (checkArrA == true || checkArrB == true)){
+            }
+            else if (menu==5 && (checkArrA == true || checkArrB == true))
+            {
                cout << "\nIngresa numero a buscar: ";
                cin >> numeroB;
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
                buscarNumero(arrD, tamanoD, numeroB);
-            }else if (menu==6 && (checkArrA == true || checkArrB == true)){
-               cout << "\nIngresa posicion a buscar: ";
-               cin >> posicionB;
+            }
+            else if (menu==6 && (checkArrA == true || checkArrB == true))
+            {
                escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
-               mostrarPos(arrD, posicionB);
-            }else if (menu==7 && (checkArrA == true || checkArrB == true)){
+               cout << "\nIngresa posicion a mostrar del 0 al " << tamanoD-1 << ": ";
+               cin >> posicionA;
+               cout << "\nEl numero en la posicion " << posicionA << " es: ";
+               mostrarPos(arrD, posicionA);
+            }
+            else if (menu==7 && (checkArrA == true || checkArrB == true))
+            {
+               posicionB=0;
+               posicionC=0;
+               escogerARR(arrA, arrB, arrD, tamanoA, tamanoB, tamanoD);
+               cout << "\nEscoge la 1ra posicion del 0 al " << tamanoD-1 << ": ";
+               cin >> posicionB;
+               cout << "\nEscoge la 2da posicion del 0 al " << tamanoD-1 << ": ";
+               cin >> posicionC;
+               calcularNums(arrD[posicionB],arrD[posicionC],resBC);
+               cout << "\nEl resultado de la operacion es: " << resBC;
+            }
+            else if (menu==8 && (checkArrA == true || checkArrB == true))
+            {
                
-            }else if (menu==8 && (checkArrA == true || checkArrB == true)){
-               
-            }else{
+            }
+            else
+            {
                cout << "\nPrimero debes llenar un arreglo, selecciona opcion 1";
             }
-         }else{
+         }else 
+         {
             cout << "\nNumero del menu NO valido";
          }
 
