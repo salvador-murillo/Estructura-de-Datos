@@ -3,7 +3,7 @@ salir=1
 while true
 do
     clear
-    echo $'\t\t\t'"Estructura de Datos"
+    echo $'\t\t\t'"CUCEA | Estructura de Datos | Salvador Murillo Arias"
     echo $'\n'"Seleccione programa a ejecutar:"$'\n'
 
     PROGRAMAS=(
