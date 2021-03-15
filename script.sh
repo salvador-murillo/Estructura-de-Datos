@@ -28,6 +28,8 @@ do
     read -p $'Volver a seleccion de programas? 1-SI 2-NO : ' salir
     if (($salir > 1))
         then
+            clear
+            echo $'Presiona RUN para volver a ejecutar'
             exit
     fi
     cd ..
