@@ -11,7 +11,7 @@ typedef struct biblioteca{
     int anioPublicacion;
     char autor[20];
     char ciudadPublicacion[20];
-    char isbn[13];
+    char isbn[16];
     float precio;
 };
 
