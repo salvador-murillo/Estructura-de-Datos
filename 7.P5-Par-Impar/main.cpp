@@ -20,6 +20,8 @@ int main() {
         *ap_num % 2 == 0 
             ? cout << "Numero PAR" << endl
             : cout << "Numero IMPAR" << endl;
+        cout << "Direccion de Numero: " << &num << endl;
+        cout << "Direccion de Numero (ap_num): " << ap_num << endl;
         cout << "\nIngresar otro numero? 1-SI 2-NO: "; cin >>salir;
     }while(salir==1);
 }
