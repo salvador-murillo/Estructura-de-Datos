@@ -78,6 +78,9 @@ void mostrarTipoDato(int valor){
             cout << "Direccion de crs[1] (ap_crs1) : " << static_cast<const void *>(ap_crs1) << endl;
             cout << "Bytes de crs[1] : " << sizeof(crs[1])  << endl;
             cout << "Bytes de crs[1] (ap_crs1) : " << sizeof(*ap_crs1)  << endl;
+
+            cout << "\nGeneral" << endl;
+            cout << "Bytes de crs : " << sizeof(crs) << endl;
         break;
         default:
         break;
@@ -100,5 +103,4 @@ int main() {
         mostrarTipoDato(tipoDato);
         cout << "\nMostrar otro tipo de dato? 1-SI 2-NO: "; cin >>salir;
     }while(salir==1);
-   
 }
