@@ -7,7 +7,9 @@ PROGRAMAS=(
         '2.R2-Funciones' 
         '3.P1-Estructura-Simple' 
         '4.P2-Estructura-Anidada' 
-        '5.P3-Estructura-Arreglos-Funciones'
+        '5.P3-Estructura-Arreglos-Funciones' 
+        '6.P4-Punteros' 
+        '7.P5-Par-Impar'
 )
 
 mostrarTitulo(){
