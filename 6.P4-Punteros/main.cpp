@@ -83,6 +83,7 @@ void mostrarTipoDato(int valor){
             cout << "Bytes de crs : " << sizeof(crs) << endl;
         break;
         default:
+            cout << "Numero NO valido";
         break;
     }
 }
