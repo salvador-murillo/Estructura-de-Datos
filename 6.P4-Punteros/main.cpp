@@ -58,8 +58,8 @@ void mostrarTipoDato(int valor){
             cout << "Tipo CHAR" << endl;
             cout << "Valor de cr : " << cr << endl;
             cout << "Valor de cr (ap_cr) : " << *ap_cr << endl;
-            cout << "Direccion de cr : " << &cr << endl;
-            cout << "Direccion de cr (ap_cr) : " << ap_cr << endl;
+            cout << "Direccion de cr : " << static_cast<const void *>(&cr) << endl;
+            cout << "Direccion de cr (ap_cr) : " << static_cast<const void *>(ap_cr) << endl;
             cout << "Bytes de cr : " << sizeof(cr)  << endl;
             cout << "Bytes de cr (ap_cr) : " << sizeof(*ap_cr)  << endl;
         break;
@@ -67,15 +67,15 @@ void mostrarTipoDato(int valor){
             cout << "Tipo CHAR (mas de 1)" << endl;
             cout << "\nValor de crs[0] : " << crs[0] << endl;
             cout << "Valor de crs[0] (ap_crs0) : " << *ap_crs0 << endl;
-            cout << "Direccion de crs[0] : " << &crs[0] << endl;
-            cout << "Direccion de crs[0] (ap_crs0) : " << ap_crs0 << endl;
+            cout << "Direccion de crs[0] : " << static_cast<const void *>(&crs[0]) << endl;
+            cout << "Direccion de crs[0] (ap_crs0) : " << static_cast<const void *>(ap_crs0) << endl;
             cout << "Bytes de crs[0] : " << sizeof(crs[0])  << endl;
             cout << "Bytes de crs[0] (ap_crs0) : " << sizeof(*ap_crs0)  << endl;
             
             cout << "\nValor de crs[1] : " << crs[1] << endl;
             cout << "Valor de crs[1] (ap_crs1) : " << *ap_crs1 << endl;
-            cout << "Direccion de crs[1] : " << &crs[1] << endl;
-            cout << "Direccion de crs[1] (ap_crs1) : " << ap_crs1 << endl;
+            cout << "Direccion de crs[1] : " << static_cast<const void *>(&crs[1]) << endl;
+            cout << "Direccion de crs[1] (ap_crs1) : " << static_cast<const void *>(ap_crs1) << endl;
             cout << "Bytes de crs[1] : " << sizeof(crs[1])  << endl;
             cout << "Bytes de crs[1] (ap_crs1) : " << sizeof(*ap_crs1)  << endl;
         break;
