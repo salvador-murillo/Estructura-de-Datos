@@ -10,7 +10,8 @@ PROGRAMAS=(
         '5.P3-Estructura-Arreglos-Funciones' 
         '6.P4-Punteros' 
         '7.P5-Par-Impar' 
-        '8.P6-Aritmetica-Int'
+        '8.P6-Aritmetica-Int' 
+        '9.P7-Aritmetica-Double'
 )
 
 mostrarTitulo(){
