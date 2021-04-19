@@ -12,7 +12,8 @@ PROGRAMAS=(
         '7.P5-Par-Impar' 
         '8.P6-Aritmetica-Int' 
         '9.P7-Aritmetica-Double' 
-        '10.P8-Apuntador-Char'
+        '10.P8-Apuntador-Char' 
+        '11.P9-Funciones-Strings'
 )
 
 mostrarTitulo(){

@@ -13,7 +13,7 @@ typedef struct persona{
     direc dirpers;
 };
 
-main(){
+int main(){
     persona alumno; //Variable ALUMNO de estructura PERSONA
 
     cout<<"Dame el nombre: "; cin>>alumno.nom;
