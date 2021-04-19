@@ -1,7 +1,7 @@
 #! /bin/bash
 salir=1
 
-PROGRAMAS=(
+SECCIONES=(
         '0.Debug' 
         '1.R1-Manejo-Arreglos' 
         '2.R2-Funciones' 
@@ -13,7 +13,12 @@ PROGRAMAS=(
         '8.P6-Aritmetica-Int' 
         '9.P7-Aritmetica-Double' 
         '10.P8-Apuntador-Char' 
-        '11.P9-Funciones-Strings'
+        '11.P9-Funciones-Strings' 
+        '12.P10-Apuntadores_y_Cadenas'
+)
+
+repaso=(
+
 )
 
 mostrarTitulo(){
@@ -44,18 +49,21 @@ mostrarSalida(){
 while true
 do
     mostrarTitulo
+    #TODO Cambiar modo de ingreso a programas por secciones
     echo $"Seleccione programa a ejecutar:"$'\n'
-
-    for i in ${PROGRAMAS[@]};
+    for i in ${SECCIONES[@]};
     do
         echo $'\033[32m'"$i"
     done
 
     numeroPro=0
     read -p $'\033[0m'$'\n''Elige numero de programa: ' numeroPro
-    echo $'\n''Cargando...' $'\033[33m'"#${PROGRAMAS[$numeroPro]}"
-    cd "${PROGRAMAS[$numeroPro]}"
+    echo $'\n''Cargando...' $'\033[33m'"#${SECCIONES[$numeroPro]}"
+    cd "${SECCIONES[$numeroPro]}"
     echo $'\033[0m'
+    #TODO Hacer funcion para validar que el numero ingresado exista
+    # if (( numeroPro >=0 && numeroPro <= ))
+    # fi
     clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main
     
     
