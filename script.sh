@@ -94,7 +94,7 @@ mostrarProgramas(){
     while [[ $salirSec2 > 0 ]]; 
     do
         mostrarTitulo
-        echo ${SECCIONES[$numeroSecU-1]}$'\n\nProgramas:'
+        echo $'TEMA '${SECCIONES[$numeroSecU-1]}$'\n\nProgramas:'
         
         pro=proTema$numeroSecU[@] #Creacion de variable para array indirecto de acuerdo a la categoria
         for j in ${!pro}
@@ -108,7 +108,7 @@ mostrarProgramas(){
         else
             read -p $'\n\033[0m''Escriba NUMERO (1) de programa: ' numeroPro
         fi
-        
+
         #--Determinar calcular programa
         if [[ numeroSecU -eq 1 ]] && [[ $numeroPro == 'R1' || $numeroPro == 'r1' ]]; then
             numeroPro=0
