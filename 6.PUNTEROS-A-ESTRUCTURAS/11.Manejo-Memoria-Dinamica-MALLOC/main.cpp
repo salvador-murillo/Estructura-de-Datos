@@ -30,15 +30,14 @@ int main() {
    cout << "Size of puntFruta1:" << sizeof(*puntFruta1)<< endl;
    cout << "La direccion de puntFruta1 es:" << puntFruta1 << endl;
    capFruta(puntFruta1);
-   cout << "Size of nombre char[15]: " << sizeof(puntFruta1->nombre);
    mostrarFruta(puntFruta1);
    free(puntFruta1);
 }
 
 void capFruta(fruta *puntFruta){
    cout << "\nIngresa los siguientes datos de la fruta:\n" << endl;
-   cout << "VARIEDAD: "; cin >> puntFruta->variedad;
-   fflush(stdin);
+   cout << "VARIEDAD (1)(2)(3): "; cin >> puntFruta->variedad;
+   cin.ignore();
    cout << "NOMBRE: "; cin.getline(puntFruta->nombre, 15, '\n');
    cout << "CANTIDAD: "; cin >> puntFruta->can_ingresar;
    cout << "PRECIO MAYOREO: "; cin >> puntFruta->precio_mayoreo;
