@@ -1,6 +1,6 @@
 /*
 CUCEA | Estructura de Datos | Salvador Murillo Arias
-Programa #11: Manejo Memoria Dinamica
+Programa #11: Manejo Memoria Dinamica con MALLOC
 */
 #include <iostream>
 using namespace std;
