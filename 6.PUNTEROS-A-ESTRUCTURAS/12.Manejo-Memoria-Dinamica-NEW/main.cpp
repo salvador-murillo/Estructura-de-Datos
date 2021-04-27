@@ -32,6 +32,13 @@ int main() {
    capFruta(puntFruta1);
    mostrarFruta(puntFruta1);
    delete(puntFruta1);
+
+   //TEST para validar que se libero espacio en memoria
+   fruta *pfr1;
+   pfr1 = new fruta;
+   cout << "\nSize of pfr1:" << sizeof(*pfr1)<< endl;
+   cout << "La direccion de pfr1 es:" << pfr1 << endl;
+   delete(pfr1);
 }
 
 void capFruta(fruta *puntFruta){

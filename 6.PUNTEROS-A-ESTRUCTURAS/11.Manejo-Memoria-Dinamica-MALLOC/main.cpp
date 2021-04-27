@@ -32,6 +32,13 @@ int main() {
    capFruta(puntFruta1);
    mostrarFruta(puntFruta1);
    free(puntFruta1);
+
+   //TEST para validar que se libero espacio en memoria
+   fruta *pfr1;
+   pfr1 = (fruta*) malloc(sizeof(fruta));
+   cout << "\nSize of pfr1:" << sizeof(*pfr1)<< endl;
+   cout << "La direccion de pfr1 es:" << pfr1 << endl;
+   free(pfr1);
 }
 
 void capFruta(fruta *puntFruta){
