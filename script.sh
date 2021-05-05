@@ -9,32 +9,37 @@ SECCIONES=(
     '4.PUNTEROS-ARITMETICA' 
     '5.PUNTEROS-STRINGS' 
     '6.PUNTEROS-A-ESTRUCTURAS'
+    '7.PILAS'
 )
+
 proTema1=(
     'R1-Manejo-Arreglos' 
-    'R2-Funciones'
-)
+    'R2-Funciones')
+
 proTema2=(
     '1.Estructura-Simple' 
     '2.Estructura-Anidada' 
-    '3.Estructura-Arreglos-Funciones'
-)
+    '3.Estructura-Arreglos-Funciones')
+
 proTema3=(
     '4.Punteros' 
-    '5.Par-Impar'
-)
+    '5.Par-Impar')
+
 proTema4=(
     '6.Aritmetica-Int' 
-    '7.Aritmetica-Double'
-)
+    '7.Aritmetica-Double')
+
 proTema5=(
     '8.Apuntador-Char' 
     '9.Funciones-String' 
-    '10.Apuntadores_y_Cadenas'
-)
+    '10.Apuntadores_y_Cadenas')
+
 proTema6=(
     '11.Manejo-Memoria-Dinamica-MALLOC' 
-    '12.Manejo-Memoria-Dinamica-NEW'
+    '12.Manejo-Memoria-Dinamica-NEW')
+
+proTema7=(
+    '13.Pilas-1'
 )
 
 mostrarTitulo(){
@@ -130,6 +135,9 @@ mostrarProgramas(){
             salirSec2=0
         elif [[ numeroSecU -eq 6 ]] && [[ numeroPro -eq 11 || numeroPro -eq 12 ]]; then
             numeroPro=$((numeroPro-11))
+            salirSec2=0
+        elif [[ numeroSecU -eq 7 ]] && [[ numeroPro -eq 13 ]]; then
+            numeroPro=$((numeroPro-13))
             salirSec2=0
         else
             echo $'\n\033[31m''Numero NO Valido'$'\n\033[0m''Seleccione de nuevo...'
