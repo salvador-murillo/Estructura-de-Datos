@@ -139,9 +139,12 @@ void pop(nodo *&pila, int &n){
 }
 
 void erase(nodo *&pila){
-   nodo *aux = pila;
-   pila = NULL;
-   delete aux;
+   while (pila != NULL){
+      nodo *aux = pila;
+      n=aux->num;
+      pila = aux->nextNodo;
+      delete aux;
+   }
    cout << "\nSe borro la pila";
    pressEnter();
 }
