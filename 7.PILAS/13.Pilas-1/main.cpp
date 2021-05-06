@@ -141,7 +141,6 @@ void pop(nodo *&pila, int &n){
 void erase(nodo *&pila){
    while (pila != NULL){
       nodo *aux = pila;
-      n=aux->num;
       pila = aux->nextNodo;
       delete aux;
    }
