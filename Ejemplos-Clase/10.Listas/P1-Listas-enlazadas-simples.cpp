@@ -8,7 +8,7 @@ void insInicio(Nodo *&, int);
 void insFinal(Nodo *&,int);
 void mostrar(Nodo *);
 
-main(){
+int main(){
     int opc,x,again;
     Nodo *lista = NULL;
 
@@ -16,9 +16,9 @@ main(){
         system("CLS");
         cout<<"1.- Insertar al Inicio"<<endl;
         cout<<"2.- Insertar al Final"<<endl;
-        cout<<"3.- Insertar al en una Posición (en medio)"<<endl;
+        cout<<"3.- Insertar al en una Posicion (en medio)"<<endl;
         cout<<"4.- Mostrar"<<endl;
-        cout<<"Seleciona la opción: "<<endl;
+        cout<<"Seleciona la opcion: "<<endl;
         cin>>opc;
         switch(opc){
         case 1:
@@ -35,7 +35,7 @@ main(){
             mostrar(lista);
         break;
         }
-        cout<<"\nDeseas otra operación? 1-Si, 2-No: "; cin>>again;
+        cout<<"\nDeseas otra operacion? 1-Si, 2-No: "; cin>>again;
     }while(again==1);
 
 

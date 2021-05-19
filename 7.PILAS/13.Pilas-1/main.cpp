@@ -138,7 +138,7 @@ void pop(nodo *&pila, int &n){
    pressEnter();
 }
 
-voiderase(nodo *&pila){
+void erase(nodo *&pila){
    while (pila != NULL){
       nodo *aux = pila;
       pila = aux->nextNodo;

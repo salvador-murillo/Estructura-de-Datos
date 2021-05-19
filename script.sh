@@ -11,6 +11,7 @@ SECCIONES=(
     '6.PUNTEROS-A-ESTRUCTURAS'
     '7.PILAS' 
     '8.COLAS'
+    '9.LISTAS'
 )
 
 proTema1=(
@@ -43,7 +44,10 @@ proTema7=(
     '13.Pilas-1')
 
 proTema8=(
-    '14.Colas-1'
+    '14.Colas-1')
+
+proTema9=(
+    '15.Listas-1'
 )
 
 mostrarTitulo(){
@@ -145,6 +149,9 @@ mostrarProgramas(){
             salirSec2=0
         elif [[ numeroSecU -eq 8 ]] && [[ numeroPro -eq 14 ]]; then
             numeroPro=$((numeroPro-14))
+            salirSec2=0
+        elif [[ numeroSecU -eq 9 ]] && [[ numeroPro -eq 15 ]]; then
+            numeroPro=$((numeroPro-15))
             salirSec2=0
         else
             echo $'\n\033[31m''Numero NO Valido'$'\n\033[0m''Seleccione de nuevo...'
