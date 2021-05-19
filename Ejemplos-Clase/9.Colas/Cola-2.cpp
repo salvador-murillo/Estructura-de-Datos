@@ -38,13 +38,8 @@ int main(){
         }
         cout<<"\nOtra operacion? 1Si - 2No: "; cin>>again;
     }while(again==1);
-
-
-
-
-
-
 }
+
 void borrarQ(Nodo *&frente, Nodo*&fin, int &n){
     n = frente->dato;
     Nodo *aux = frente;
@@ -75,6 +70,7 @@ bool q_empty(Nodo *frente){
     else
         return false;
 }
+
 void show(Nodo *&frente){
 
     Nodo *aux = frente;
