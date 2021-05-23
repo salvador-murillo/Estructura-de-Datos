@@ -48,6 +48,7 @@ proTema8=(
 
 proTema9=(
     '15.Listas-1'
+    '16.Listas-2'
 )
 
 mostrarTitulo(){
@@ -150,7 +151,7 @@ mostrarProgramas(){
         elif [[ numeroSecU -eq 8 ]] && [[ numeroPro -eq 14 ]]; then
             numeroPro=$((numeroPro-14))
             salirSec2=0
-        elif [[ numeroSecU -eq 9 ]] && [[ numeroPro -eq 15 ]]; then
+        elif [[ numeroSecU -eq 9 ]] && [[ numeroPro -eq 15 || numeroPro -eq 16 ]]; then
             numeroPro=$((numeroPro-15))
             salirSec2=0
         else

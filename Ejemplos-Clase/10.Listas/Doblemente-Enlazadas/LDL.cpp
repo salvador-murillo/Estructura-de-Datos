@@ -37,7 +37,7 @@ int main(){
             mostrar(lista);
         break;
         case 3:
-            cout<<"Dame la posici�n a borrar: "; cin>>x;
+            cout<<"Dame la posici_n a borrar: "; cin>>x;
             borrarPos(lista,x);
             mostrar(lista);
         break;
@@ -47,7 +47,7 @@ int main(){
 
 
         }
-        cout<<"\n\nQuieres otra operaci�n 1.Si 2.NO: "; cin>>opc;
+        cout<<"\n\nQuieres otra operaci_n 1.Si 2.NO: "; cin>>opc;
     }while(opc==1);
 
 
@@ -70,19 +70,19 @@ void insFin(Nodo *&lista,int n){
     Nodo *ultimo = lista; //Se usa en el paso 5
     nvo_nodo->dato = n; //2. Ponemos dato(s)
 
-    nvo_nodo->next = NULL; //3. Como es �ltimo nodo, next apunta a NULL
+    nvo_nodo->next = NULL; //3. Como es _ltimo nodo, next apunta a NULL
 
-    if(lista == NULL){//4. Si la lista est� vac�a, el nvo_nodo es lista
+    if(lista == NULL){//4. Si la lista est_ vac_a, el nvo_nodo es lista
         nvo_nodo->prev = NULL; //El campo previo apunta a NULL
         lista = nvo_nodo; //Lista ahora es Nvo_nodo, y por ende el sig apunta a NULL
-        return; //Se sale de la funci�n
+        return; //Se sale de la funci_n
     }
 
     while(ultimo->next != NULL)//5. De otro modo, hay que recorrer la lista
-        ultimo = ultimo->next; //Ultimo, ahora es lo que ten�a ultimo en su campo siguiente
+        ultimo = ultimo->next; //Ultimo, ahora es lo que ten_a ultimo en su campo siguiente
 
     ultimo->next = nvo_nodo;  //6. Cuando ya llegamos al final, insertamos el nvo nodo en SIGUIENTE
-    nvo_nodo->prev = ultimo;  //7. Y el nvo nodo, en PREVIO apunta a donde est� �ltimo.
+    nvo_nodo->prev = ultimo;  //7. Y el nvo nodo, en PREVIO apunta a donde est_ _ltimo.
 }
 void mostrar(Nodo *lista){
     Nodo *last;
@@ -100,17 +100,17 @@ void mostrar(Nodo *lista){
     }
 }
 void borrarPos(Nodo *&lista,int n){
-    if(lista == NULL || n<=0){//Si la lista est� vacia o la posici�n es inv�lida
-        cout<<"Lista vac�a o posici�n no v�lida"<<endl;
-        return; //Finaliza funci�n
+    if(lista == NULL || n<=0){//Si la lista est_ vacia o la posici_n es inv_lida
+        cout<<"Lista vac_a o posici_n no v_lida"<<endl;
+        return; //Finaliza funci_n
     }
 
-    Nodo *actual = lista;
-    for(int i=1; actual!=NULL && i<n ;i++)//Moverse desde 1 hasta la posici�n dada
+    Nodo *actual = lista; 
+    for(int i=1; actual!=NULL && i<n ;i++)//Moverse desde 1 hasta la posici_n dada
         actual = actual->next; //Se mueve a la siguiete posicion
 
-    if(actual == NULL){ //Si la posicion fue m�s alta que el tama�o de la lista
-        cout<<"Posici�n fuera de rango"<<endl;
+    if(actual == NULL){ //Si la posicion fue m_s alta que el tama_o de la lista
+        cout<<"Posici_n fuera de rango"<<endl;
         return; //Finaliza
     }
 
@@ -118,10 +118,10 @@ void borrarPos(Nodo *&lista,int n){
         lista = actual->next;
 
     if(actual->next != NULL)
-        actual->next->prev = actual->prev;
+        actual->next->prev = actual->prev; //Doble secuencia para llegar al apuntador del siguiente nodo
 
     if(actual->prev != NULL)
-        actual->prev->next = actual->next;
+        actual->prev->next = actual->next; //Doble secuencia para llegar al apuntador del siguiente nodo
 
     delete(actual);
 
