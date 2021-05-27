@@ -3,34 +3,44 @@ CUCEA | Estructura de Datos | Salvador Murillo Arias
 Test: Para depuracion de fragmentos de codigo
 */
 #include <iostream>
-#include <ctime>
 using namespace std;
 
+void trajeIntro(){
+    cout << "\t\t       j##Q                        ,##b\n" <<
+            "\t\t       j#####m                  s#####b\n" <<
+            "\t\t       j########m, ,#####M,  s########b\n" <<
+            "\t\t       j##############################b\n" <<
+            "\t\t       j##############################b\n" <<
+            "\t\t       j##############################b\n" <<
+            "\t\t       j#######M=   =%WMMT,  |%#######b\n" <<
+"                 ##    j####M|                   5@###b    @#\n" <<
+"               ,####   j#O,                         7@b   @###Q\n" <<
+"              @#####b                                    ]#####N\n" <<
+"            ,########b                                  ,########p\n" <<
+"           @##########p              ,sm,               ##########N\n" <<
+"          #############             ]####b             @############p\n" <<
+"        :###############             7W#M`            @##############m\n" <<
+"         %##############b                            ]###############\n" <<
+"          ^@#############b                          ,##############/\n" <<
+"            7#############p          ###M           #############M\n" <<
+"              %############         j####M         @############`\n" <<
+"               j@###########         7W#M`         @###########\n" <<
+"                 7##########b                    ]##########M\n" <<
+"                   %#########b                  ,##########\n" <<
+"                    ^@########p     ,####p      #########C\n" <<
+"                      7########     ^####b     @#######M\n" <<
+"                        @#######      `,      @#######`\n" <<
+"                         |@#####b            ]######\n" <<
+"                           7#####b          ,#####M\n" <<
+"                            '@####p         #####'\n" <<
+"                              |@###        @###C\n" <<
+"                                7###      @###`\n" <<
+"                                 ^@#b    ]##/\n" <<
+"                                   7#p  ,#C\n" <<
+"                                     %p #`\n" <<
+"                                      6|\n";
+}
+
 int main(){
-   int hr, min, sec;
-    cout << "\033[2J\033[0;0H";
-    cout << "PRUEBAS" << endl;
-   // current date/time based on current system
-   time_t now = time(0);
-
-   cout << "Number of sec since January 1,1970 is:: " << now << endl;
-
-   tm *ltm = localtime(&now);
-
-   // print various components of tm structure.
-   cout << "Year:" << 1900 + ltm->tm_year<<endl;
-   cout << "Month: "<< 1 + ltm->tm_mon<< endl;
-   cout << "Day: "<< ltm->tm_mday << endl;
-   
-   hr = -5+ltm->tm_hour;
-   (hr<10) ? cout << "Time: 0" : cout << "Time: ";
-   cout << hr << ":";
-   
-   min = ltm->tm_min;
-   (min<10) ? cout << "0" : cout << "";
-   cout << min << ":";
-   
-   sec = ltm->tm_sec;
-   (sec<10) ? cout << "0" : cout << "";
-   cout << sec << endl;
+  trajeIntro();
 }

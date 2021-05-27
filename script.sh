@@ -3,6 +3,7 @@ salir=1
 numeroSecU=0
 
 SECCIONES=(
+    '0.Debug'
     '1.REPASO-FUNDAMENTOS' 
     '2.ESTRUCTURAS' 
     '3.PUNTEROS-INTRODUCCION' 
@@ -12,7 +13,10 @@ SECCIONES=(
     '7.PILAS' 
     '8.COLAS'
     '9.LISTAS'
+    '10.Proyecto-Final'
 )
+proTema0=(
+   'debug')
 
 proTema1=(
     'R1-Manejo-Arreglos' 
@@ -48,8 +52,12 @@ proTema8=(
 
 proTema9=(
     '15.Listas-1'
-    '16.Listas-2'
+    '16.Listas-2')
+
+proTema10=(
+    '17.Sistema-Renta-Smoking'
 )
+
 
 mostrarTitulo(){
     clear
@@ -91,9 +99,9 @@ mostrarSeccion(){
         numeroSec=${#SECCIONES[@]}
         
         read -p $'\033[0m'$'\n''Elige numero de sección: ' numeroSecU
-        if [[ $numeroSecU -ge 1 && $numeroSecU -le $numeroSec ]]
+        if [[ $numeroSecU -ge 0 && $numeroSecU -le $numeroSec ]]
             then
-                cd "${SECCIONES[$numeroSecU-1]}"
+                cd "${SECCIONES[$numeroSecU]}"
                 salirSec1=0
             else
                 echo $'\n\033[31m''Numero N0 Valido'$'\n\033[0m''Regresando a menu...'
@@ -108,7 +116,7 @@ mostrarProgramas(){
     while [[ $salirSec2 > 0 ]]; 
     do
         mostrarTitulo
-        echo $'TEMA '${SECCIONES[$numeroSecU-1]}$'\n\nProgramas:'
+        echo $'TEMA '${SECCIONES[$numeroSecU]}$'\n\nProgramas:'
         
         pro=proTema$numeroSecU[@] #Creacion de variable para array indirecto de acuerdo a la categoria
         for j in ${!pro}
@@ -117,14 +125,18 @@ mostrarProgramas(){
         done
 
         numeroPro=0
-        if [[ $numeroSecU -eq 1 ]]; then
+        if [[ $numeroSecU -ge 0 && $numeroSecU -le 1 ]]; then
             read -p $'\n\033[0m''Escriba LETRA y NUMERO (E1) de programa: ' numeroPro
         else
             read -p $'\n\033[0m''Escriba NUMERO (1) de programa: ' numeroPro
         fi
 
         #--Determinar calcular programa
-        if [[ numeroSecU -eq 1 ]] && [[ $numeroPro == 'R1' || $numeroPro == 'r1' ]]; then
+
+        if [[ numeroSecU -eq 0 ]] && [[ $numeroPro == 'debug' || $numeroPro == 'd' ]]; then
+            numeroPro=0
+            salirSec2=0
+        elif [[ numeroSecU -eq 1 ]] && [[ $numeroPro == 'R1' || $numeroPro == 'r1' ]]; then
             numeroPro=0
             salirSec2=0
         elif [[ numeroSecU -eq 1 ]] && [[ $numeroPro == 'R2' || $numeroPro == 'r2' ]]; then
@@ -153,6 +165,9 @@ mostrarProgramas(){
             salirSec2=0
         elif [[ numeroSecU -eq 9 ]] && [[ numeroPro -eq 15 || numeroPro -eq 16 ]]; then
             numeroPro=$((numeroPro-15))
+            salirSec2=0
+        elif [[ numeroSecU -eq 10 ]] && [[ numeroPro -eq 17 ]]; then
+            numeroPro=$((numeroPro-17))
             salirSec2=0
         else
             echo $'\n\033[31m''Numero NO Valido'$'\n\033[0m''Seleccione de nuevo...'
