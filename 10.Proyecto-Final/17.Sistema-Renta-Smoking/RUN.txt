@@ -1,0 +1,7 @@
+Correr de manera manual por medio de consola
+**Para correr se debe de compilar todos los cpp's usando clang++
+**clang++ -o main main.cpp file1.cpp file2.cpp
+**Despues correr con ./main
+
+Modificar script para correr en replit, anexando archivos cpp en linea 196
+clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main

@@ -90,9 +90,16 @@ mostrarSeccion(){
    do
         mostrarTitulo
         echo $"Secciones a mostrar:"$'\n'
+        j=0 # TEST para ocultar proyecto
         for i in ${SECCIONES[@]};
         do
-            echo $'\033[32m'"$i"
+            
+            if [[ j -eq 10 ]]; then
+                echo $'\033[8;32m'"$i"
+            else
+                echo $'\033[32m'"$i" # FIXME dejar solo esta linea dentro del for
+            fi
+            j=$(($j+1))
         done
 
         numeroSecU=0
@@ -193,7 +200,11 @@ do
     #--Funcion para mostrar PROGRAMAS
     mostrarProgramas
     
-    clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main
+    if [[ numeroSecU -eq 10 ]]; then
+        clang++ -pthread -std=c++17 -o main main.cpp  src/intro.cpp src/struct-smoking.cpp src/date-time.cpp || make main && ./main
+    else
+        clang++ -pthread -std=c++17 -o main main.cpp || make main && ./main
+    fi
     echo $'\033[32m'$'\n''Volver a seleccion de programas?' $'\033[31m'
     read -p '1-SI 2-NO : ' salir
     echo $'\033[0m' #Reset Color Blanco
