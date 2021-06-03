@@ -27,11 +27,18 @@ void mostrarTitle(){
     //now = now - 18000; //Usar para REPL
     tm *ltm = localtime(&now);
     cout << "\033[2J\033[0;0H";
-    cout << "\033[31mSistema de Renta de Smoking\033[0m\t\t\t\033[34mFECHA\033[0m "; 
+    cout << "\033[0m\t\033[34m    FECHA\033[0m "; 
     day(ltm)<10 ? cout << "0" << day(ltm) : cout << day(ltm); 
     cout << "/";
     month(ltm)<10 ? cout << "0" << month(ltm) : cout << month(ltm);  
-    cout << "/" << year(ltm) << endl;
+    cout << "/" << year(ltm);
+    cout << "\033[0m\t\033[34mHORA\033[0m ";
+    hour(ltm)<10 ? cout << "0" << hour(ltm) : cout << hour(ltm); 
+    cout << ":";
+    minutes(ltm)<10 ? cout << "0" << minutes(ltm) : cout << minutes(ltm);
+    cout << ":";
+    seconds(ltm)<10 ? cout << "0" << seconds(ltm) : cout << seconds(ltm);
+    cout << "\n\t\t   \033[7;34mRENTA DE SMOKINGS\033[0m\n";
 }
 
 void pressEnter(){
@@ -61,7 +68,7 @@ int mostrarMenu(){
             salir=1;
             return opc;
         }else{
-            cout << "\nOpcion no valida" << endl;
+            cout << "\033[31mOpcion NO valida\033[0m";
             cin.ignore();
             pressEnter();
         }
