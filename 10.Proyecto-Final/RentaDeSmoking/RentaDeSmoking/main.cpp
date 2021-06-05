@@ -15,7 +15,7 @@ int main() {
     mostrarIntro();
     do{
         int opc=0;
-        // cout << "TEST" << endl; 
+        cout << "TEST" << endl; 
         opc = mostrarMenu();
         cin.ignore();
         opc==11 ? salir=2 : salir=1;

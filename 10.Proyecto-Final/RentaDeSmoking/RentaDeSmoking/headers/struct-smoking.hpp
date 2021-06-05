@@ -19,7 +19,6 @@ struct Smoking{
 };
 
 bool checkID(Smoking *, int );
-bool checkTalla(int );
 void trajeID(Smoking *&, Smoking *);
 void newTraje(Smoking *&);
 void altaTraje(Smoking *&);
