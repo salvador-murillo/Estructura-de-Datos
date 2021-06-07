@@ -15,7 +15,7 @@ int main() {
     mostrarIntro();
     do{
         int opc=0;
-        cout << "TEST" << endl; 
+        // cout << "TEST" << endl;
         opc = mostrarMenu();
         cin.ignore();
         opc==11 ? salir=2 : salir=1;
@@ -33,12 +33,12 @@ void selecOpc(Smoking *&lista, int opc){
             altaTraje(lista);
             cout << "\nAgregar otro traje 1.SI 2.NO: ";
             cin >> num;
-            // cin.ignore();
-            // pressEnter();
         }while(num==1);
         break;
     case 2:
-        /* code */
+        mostrarTitle();
+        bajaTraje(lista);
+        pressEnter();
         break;
     case 3:
         /* code */

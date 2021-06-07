@@ -56,7 +56,6 @@ int main(){
 void insInicio(Nodo *&lista, int n){
     Nodo *nvo_nodo = new Nodo();
     nvo_nodo->dato = n;
-
     nvo_nodo->next = lista;
     nvo_nodo->prev = NULL;
 
@@ -113,10 +112,11 @@ void borrarPos(Nodo *&lista,int n){
         cout<<"Posici_n fuera de rango"<<endl;
         return; //Finaliza
     }
-
+    //Si se encuentra en la primera posicion, se mueve hacia la siguiente
     if(lista == actual)
         lista = actual->next;
 
+    //Si se encuentra en medio o en 
     if(actual->next != NULL)
         actual->next->prev = actual->prev; //Doble secuencia para llegar al apuntador del siguiente nodo
 

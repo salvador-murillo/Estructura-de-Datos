@@ -33,12 +33,11 @@ void selecOpc(Smoking *&lista, int opc){
             altaTraje(lista);
             cout << "\nAgregar otro traje 1.SI 2.NO: ";
             cin >> num;
-            // cin.ignore();
-            // pressEnter();
         }while(num==1);
         break;
     case 2:
-        /* code */
+        mostrarTitle();
+        bajaTraje(lista);
         break;
     case 3:
         /* code */

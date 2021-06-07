@@ -23,3 +23,4 @@ bool checkTalla(int );
 void trajeID(Smoking *&, Smoking *);
 void newTraje(Smoking *&);
 void altaTraje(Smoking *&);
+void bajaTraje(Smoking *&);

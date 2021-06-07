@@ -14,11 +14,13 @@ struct Smoking{
     float totalPagar; //NO - 0, condicion < preciodiario * diasPrestamo
     float totalAbono; //NO - 0, condicion > 0
     Fecha fechaPrestamo, fechaEntrega; //NO - Default NULL
-    char nombreCliente[25]; //NO - Sin Asignar 
+    char nombreCliente[25]; //NO - Sin Asignar
     Smoking *prev, *next;
 };
 
 bool checkID(Smoking *, int );
+bool checkTalla(int );
 void trajeID(Smoking *&, Smoking *);
 void newTraje(Smoking *&);
 void altaTraje(Smoking *&);
+void bajaTraje(Smoking *&);
