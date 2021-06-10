@@ -14,7 +14,7 @@ struct Smoking{
     float totalPagar; //NO - 0, condicion < preciodiario * diasPrestamo
     float totalAbono; //NO - 0, condicion > 0
     float totalRestante; //NO - 0, condicion > 0
-    Fecha fechaPrestamo, fechaEntrega; //NO - Default NULL
+    Fecha fechaEntrega, fechaDevolucion; //NO - Default NULL
     char nombreCliente[25]; //NO - Sin Asignar
     char marca[25]; // SI - default  
     Smoking *prev, *next;

@@ -23,22 +23,15 @@ void mostrarIntro(){
 }
 
 void mostrarTitle(){
+    //Crear variable para obtener fecha y hora del sistema
     time_t now = time(0);
-    //now = now - 18000; //Usar para REPL
+    // now = now - 18000; //NOTE Usar para REPL
     tm *ltm = localtime(&now);
+
     cout << "\033[2J\033[0;0H";
-    cout << "\033[1;37m"; 
-    day(ltm)<10 ? cout << "0" << day(ltm) : cout << day(ltm); 
-    cout << "/";
-    month(ltm)<10 ? cout << "0" << month(ltm) : cout << month(ltm);  
-    cout << "/" << year(ltm);
-    cout << "    \033[1;32mRENTA DE SMOKINGS\033[1;37m     ";
-    hour(ltm)<10 ? cout << "0" << hour(ltm) : cout << hour(ltm); 
-    cout << ":";
-    minutes(ltm)<10 ? cout << "0" << minutes(ltm) : cout << minutes(ltm);
-    cout << ":";
-    seconds(ltm)<10 ? cout << "0" << seconds(ltm) : cout << seconds(ltm);
-    cout << "\033[0m\n"; 
+    cout << getDate(ltm);
+    cout << "    \033[1;32mRENTA DE SMOKINGS\033[0m     ";
+    cout << getTime(ltm) << endl;
 }
 
 void pressEnter(){

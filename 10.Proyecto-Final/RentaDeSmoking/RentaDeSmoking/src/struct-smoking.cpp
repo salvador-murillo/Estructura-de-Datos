@@ -273,8 +273,8 @@ void showSuits(Smoking *lista)
         (lista->talla==1) ? cout << "Chica": (lista->talla==2) ? cout << "Mediana": cout << "Grande";
         cout << " - \033[1;3;37mMODELO:\033[0m ";
         (lista->modelo==4) ? cout << "Slim": (lista->modelo==5) ? cout << "Skinny": cout << "Comfort";
-        cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaPrestamo.day << "/" << lista->fechaPrestamo.month << "/" << lista->fechaPrestamo.year;
-        cout << " - \033[1;3;37mENTREGA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
+        cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
+        cout << " - \033[1;3;37mENTREGA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
         cout << "\n\033[1;3;37m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
         cout << "\n\033[1;3;37mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
         cout << "\n\033[1;3;37mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;

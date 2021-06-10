@@ -2,6 +2,8 @@
 #include <string.h>
 #include "../headers/struct-smoking.hpp"
 #include "../headers/intro.hpp"
+#include "../headers/date-time.hpp"
+
 using namespace std;
 
 int countSuits(Smoking *lista)
@@ -99,8 +101,8 @@ void suitID(Smoking *&nvoSuit, Smoking *lista)
 
 void dataSuit(Smoking *&nvoSuit)
 {
-    int num = 0;
-    bool tallaValido = true, modeloValido = true;
+    int num = 0, precioT = 0;
+    bool tallaValido = true, modeloValido = true, precioValido = true;
 
     // Valores por default
     nvoSuit->isAlquilado = false;
@@ -130,10 +132,19 @@ void dataSuit(Smoking *&nvoSuit)
         }else
             cout << "\nNumero NO valido" << endl;
     }
-    cout << "\n\033[1;37mPRECIO \033[1;35mIngresa el costo por dia \033[0m$";
-    cin >> nvoSuit->precioDiario;
+    while (precioValido==true)//PRECIO
+    {
+        cout << "\n\033[1;37mPRECIO \033[1;35mIngresa el costo por dia \033[0m$";
+        cin >> precioT;
+        if(precioT>0)
+        {
+            nvoSuit->precioDiario = precioT;
+            precioValido=false;
+        }else 
+            cout << "\nEl costo debe de ser positivo";
+    }
     cin.ignore();
-    cout << "\n\033[1;37mMARCA \033[1;35mIngresa la marca: \033[0m";
+    cout << "\n\033[1;37mMARCA \033[1;35mIngresa marca de smoking: \033[0m";
     cin.getline(nvoSuit->marca, 25, '\n');
 
 }
@@ -277,8 +288,8 @@ void showSuits(Smoking *lista)
         (lista->modelo==4) ? cout << "Slim": (lista->modelo==5) ? cout << "Skinny": cout << "Comfort";
         cout << "\n\033[1;3;37mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
         cout << "\n\033[1;3;37m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
-        cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaPrestamo.day << "/" << lista->fechaPrestamo.month << "/" << lista->fechaPrestamo.year;
-        cout << " - \033[1;3;37mENTREGA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
+        cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
+        cout << " - \033[1;3;37mENTREGA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
         cout << "\n\033[1;3;37m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
         cout << "\n\033[1;3;37mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
         cout << "\n\033[1;3;37mTOTAL ABONO    $\033[0m" << lista->totalAbono;
@@ -326,8 +337,8 @@ void searchBySize(Smoking *lista, Smoking *&listBySize)
                     {
                         listBySize->id=aux->id;
                         listBySize->diasPrestamo=aux->diasPrestamo;
+                        listBySize->fechaDevolucion=aux->fechaDevolucion;
                         listBySize->fechaEntrega=aux->fechaEntrega;
-                        listBySize->fechaPrestamo=aux->fechaPrestamo;
                         listBySize->isAlquilado=aux->isAlquilado;
                         strcpy(listBySize->marca,aux->marca);
                         listBySize->modelo=aux->modelo;
@@ -343,8 +354,8 @@ void searchBySize(Smoking *lista, Smoking *&listBySize)
                     {
                         listBySize->id=aux->id;
                         listBySize->diasPrestamo=aux->diasPrestamo;
+                        listBySize->fechaDevolucion=aux->fechaDevolucion;
                         listBySize->fechaEntrega=aux->fechaEntrega;
-                        listBySize->fechaPrestamo=aux->fechaPrestamo;
                         listBySize->isAlquilado=aux->isAlquilado;
                         strcpy(listBySize->marca,aux->marca);
                         listBySize->modelo=aux->modelo;
@@ -371,6 +382,11 @@ void searchBySize(Smoking *lista, Smoking *&listBySize)
 
 void assignSuit(Smoking *&lista){
     int num = 0, opc = 0, diasP = 0;
+    //Crear variable para obtener fecha y hora del sistema
+    time_t now = time(0);
+    // now = now - 18000; //NOTE Usar para REPL
+    tm *ltm = localtime(&now);
+
     //Lista Vacia
     if(lista == nullptr)
     {   
@@ -383,8 +399,9 @@ void assignSuit(Smoking *&lista){
 
     do
     {
+        int opcFecha = 0, diaFecha = 0, mesFecha = 0, anioFecha = 0;
         Smoking *aux = lista;
-        bool diasValid = false;
+        bool diasValid = false, fechaValid = false, idValid = true, abonoValid = false;
         mostrarTitle();
         cout << "\n\t\033[7;34m***** ASIGNACION DE TRAJE *****\033[0m\n";
         cout << "\nIngresa el ID a asignar: ";
@@ -397,42 +414,104 @@ void assignSuit(Smoking *&lista){
                 {
                     cin.ignore();
                     aux->isAlquilado = true;
-                    cout << "\nIngresa los siguientes datos:";
-                    cout << "\nNOMBRE: ";
+                    cout << "\nIngresa los siguientes datos:" << endl;
+                    cout << "\n\033[1;37mNombre Cliente: \033[0m";
                     cin.getline(aux->nombreCliente, 25, '\n');
-                    cout << "\nIngresa los dias de prestamo (de 1 a 10 max)";
-                    while(diasValid==false){
-                        cout << "\nDIAS: ";
+                    cout << "\033[1;37mDias a prestamo (1 a 10) -\033[0m";
+                    cout << " [\033[1;32mPrecio Diario \033[1;31m$" << aux->precioDiario << "\033[0m]";
+                    //Dias
+                    while(diasValid==false)
+                    {
+                        cout << "\n\033[1;37mDIAS: \033[0m";
                         cin >> diasP;
                         if(diasP>=1 && diasP<=10){
                             aux->diasPrestamo=diasP;
                             diasValid=true;
                         }
                         else
-                            cout << "\nDias no validos, escoge entre 1 y 10" << endl;
+                            cout << "\n\033[1;31mNOTA! \033[0mDias no validos, escoge entre 1 y 10" << endl;
                     }
-                    cout << "\nDeseas agregar la fecha de hoy como fecha de salida? 1-Si 2-Agregar otra fecha: ";
+                    //Fecha Entrega y Devolucion
+                    while (fechaValid==false)
+                    {
+                        diaFecha = day(ltm);
+                        mesFecha = month(ltm);
+                        anioFecha = year(ltm);
 
+                        cout << "\n\033[1;37mAgregar fecha de hoy como fecha de entrega?\033[0m\n1-Si 2-Agregar otra fecha: ";
+                        cin >> opcFecha;
+                        if(opcFecha==1)
+                        {
+                            //Entrega
+                            aux->fechaEntrega.day = diaFecha;
+                            aux->fechaEntrega.month = mesFecha;
+                            aux->fechaEntrega.year = anioFecha;
 
+                            //Devolucion
+                            diaFecha+= diasP;
+                            returnDate(diaFecha,mesFecha,anioFecha);
+                            aux->fechaDevolucion.day = diaFecha;
+                            aux->fechaDevolucion.month = mesFecha;
+                            aux->fechaDevolucion.year = anioFecha;
+                            fechaValid = true;
+                        }
+                        else if(opcFecha==2)
+                        {
+                            //Entrega
+                            validDate(diaFecha, mesFecha, anioFecha);
+                            aux->fechaEntrega.day = diaFecha;
+                            aux->fechaEntrega.month = mesFecha;
+                            aux->fechaEntrega.year = anioFecha;
+
+                            //Devolucion
+                            diaFecha+= diasP;
+                            returnDate(diaFecha,mesFecha,anioFecha);
+                            aux->fechaDevolucion.day = diaFecha;
+                            aux->fechaDevolucion.month = mesFecha;
+                            aux->fechaDevolucion.year = anioFecha;
+                            fechaValid = true;
+                        }
+                        else
+                            cout << "\nOpcion no valida\n";
+                        
+                    }
+                    //Precios
+                    aux->totalPagar = aux->precioDiario*aux->diasPrestamo;
+                    cout << "\n\033[1;37mTOTAL A PAGAR \033[1;31m$" << aux->totalPagar;
+                    //Abono
+                    while(abonoValid==false)
+                    {
+                        cout << "\n\033[0mIngresa la cantidad a abonar $";
+                        cin >> aux->totalAbono;
+                        if(aux->totalAbono>=0 && aux->totalAbono<=aux->totalPagar){
+                            abonoValid=true;
+                            aux->totalRestante = aux->totalPagar - aux->totalAbono;
+                        }
+                        else
+                            cout << "\n\033[1;31mNOTA!\033[0m El abono no puede ser menor a 0 o mayor del total\n";
+
+                    }
+                    idValid = false;  
                 }
                 else if(aux->id==num && aux->isAlquilado == true)
                 {
                     cout << "\n\033[1;31mNOTA!\033[0m El traje se encuentra alquilado\n";
+                    idValid = false;   
+                }
+                else if(aux->next==nullptr && aux->isAlquilado != true)
+                {
+                    if(idValid==true)
+                        cout << "\n\033[1;31mNOTA!\033[0m No existe ningun smoking con este ID\n";
                 }
                 aux=aux->next;
             }
-            // reverseStruct(aux);
-            // lista=aux;
             delete(aux);
         }
         else
         {
-            cout << "NOTA! Numero negativo o mayor de 4 digitos" << endl;
-            cin.ignore();
-            pressEnter();
-            mostrarTitle();
+            cout << "\n\033[1;31mNOTA!\033[0m Numero negativo o mayor de 4 digitos" << endl;
         }
-        cout << "\nAsignar/Buscar otro? 1-SI 2-NO: ";
+        cout << "\n\033[1;37mAsignar/Buscar otro?\033[0m 1-SI 2-NO: ";
         cin >> opc;  
     }while(opc!=2);
 }
