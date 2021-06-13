@@ -15,23 +15,25 @@ struct Smoking{
     float totalAbono; //NO - 0, condicion > 0
     float totalRestante; //NO - 0, condicion > 0
     Fecha fechaEntrega, fechaDevolucion; //NO - Default NULL
-    char nombreCliente[25]; //NO - Sin Asignar
-    char marca[25]; // SI - default
+    char nombreCliente[30]; //NO - Sin Asignar
+    char marca[30]; // SI - default
     Smoking *prev, *next;
 };
 
-int countSuits(Smoking *);          //DONE Contador trajes para showSuits
-bool checkID(Smoking *, int );      //DONE Valida ID para addSuit
-bool checkSize(int );               //DONE Valida Size para
-void suitID(Smoking *&, Smoking *); //DONE Coloca datos para addSuit
-void dataSuit(Smoking *&);          //DONE Coloca datos para addSuit
-void addSuit(Smoking *&);           //1 OK
-void removeSuit(Smoking *&);        //2 OK
-      
-void showSuits(Smoking *);          //4 OK
-void searchBySize(Smoking *, Smoking *&);       //5 //FIXME Error en creacion de lista personalizada
-// void searchByID(Smoking *);         //6 //TODO
-// void writeFile(Smoking *);          //7 //TODO
-// void readFile(Smoking *);           //8 //TODO
-void assignSuit(Smoking *&);        //9 //TODO
-// void receiveSuit(Smoking *&);       //10//TODO
+int countSuits(Smoking *);                //DONE  Contador trajes para showSuits
+bool checkID(Smoking *, int );            //DONE  Valida ID para addSuit
+bool checkSize(int );                     //DONE  Valida Size para dataSuit
+void suitID(Smoking *&, Smoking *);       //DONE  Coloca datos para addSuit
+void dataSuit(Smoking *&);                //DONE  Coloca datos para addSuit
+void addSuit(Smoking *&);                 //DONE  1 Añade nuevo traje
+void removeSuit(Smoking *&);              //DONE  2 Elimina traje por su ID
+void checkData(Smoking *);                //DONE    Revisa si existe smokings y si es posible editarlos
+void editData(Smoking *, Smoking *&, int);//DONE  3 Modifica datos de un smoking
+void show1Suit(Smoking *);                //DONE    Muestra un traje
+void showSuits(Smoking *);                //DONE  4 Muestra todos los trajes hasta el momento
+void searchBySize(Smoking *);             //FIXME 5 Error en creacion de lista personalizada
+void searchByID(Smoking *);               //TODO  6
+void writeFile(Smoking *);                //TODO  7 Guardar registros en archivo Binario
+void readFile(Smoking *);                 //TODO  8 Leer registros en archivo Binario
+void assignSuit(Smoking *&);              //DONE  9 Asigna traje por ID
+// void receiveSuit(Smoking *&);          //TODO 10

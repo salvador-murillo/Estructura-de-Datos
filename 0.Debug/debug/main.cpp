@@ -1,140 +1,113 @@
 /*
 CUCEA | Estructura de Datos | Salvador Murillo Arias
-Test: Para depuracion de fragmentos de codigo
+Programa #Numero: Descripcion de creacion de archivo binario, desglose de escritura y lectura
 */
-#include<iostream>
+#include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
-struct Nodo{
-    int dato;
-    Nodo *next;
-    Nodo *prev;
+
+struct Persona{
+    int edad;
+    int lenName;
+    char nombre[25];
+    Persona *next;
+    Persona *prev;
 };
 
-void insInicio(Nodo *&,int);
-void insFin(Nodo *&,int);
-void mostrar(Nodo *);
-void borrarPos(Nodo *&,int);
+//TODO Agregar de acuerdo a menu de opciones
+void mostrar(ostream &out, Persona p){
+    out << p.nombre << ':' << p.edad << endl;
+}
 
+void showPerson(Persona *pList)
+{
+    int count = 1;
+    Persona *aux = pList;
+    if(aux == nullptr){
+        cout << "\nLista Vacia" << endl;
+    }
+    while(aux->next!=nullptr){
+        cout << "\nPersona #" << count << endl;
+        cout << "\nNOMBRE: " << aux->nombre;
+        cout << "\nEDAD: " << aux->edad;
+        count++;
+        aux=aux->next;
+    }
+    cout << endl;
+}
 
-int main(){
-    int opc,x;
-    Nodo *lista = NULL;
+void write(Persona *p){
+    Persona *aux = p;
+    //Creacion de variable para guardar datos
+    ofstream myFile("datos.bin", ios::binary);
+    
+    while (aux!=nullptr) {
+        myFile.write((const char *)(&(aux->edad)), sizeof(int));
+        myFile.write((const char *)(&(aux->lenName)), 1);
+        myFile.write((const char *)(&(aux->nombre)), aux->lenName+1);
+        aux=aux->next;
+    }
+    myFile.close();
+//    ofstream f("datos.bin", ios::binary); //Revisar ios::opcion para cuando se guarden mas registros
+//    if(f.is_open()){
+//        f.write((char *) &p, sizeof(Persona));
+//    }else{
+//        cout << "Error de apertura de archivo." << endl;
+//    }
+//    f.close();
+}
 
-    do{
-
-        cout<<"Selecciona la opcion"<<endl;
-        cout<<"1.- Agregar al inicio"<<endl;
-        cout<<"2.- Agregar al final"<<endl;
-        cout<<"3.- Borrar"<<endl;
-        cout<<"4.- Mostrar"<<endl;
-        cin>>opc;
-
-        switch(opc){
-        case 1:
-            cout<<"Dame el valor a insertar al inicio: "; cin>>x;
-            insInicio(lista,x);
-            mostrar(lista);
-        break;
-        case 2:
-            cout<<"Dame el valor a insertar al final: "; cin>>x;
-            insFin(lista,x);
-            mostrar(lista);
-        break;
-        case 3:
-            cout<<"Dame la posici_n a borrar: "; cin>>x;
-            borrarPos(lista,x);
-            mostrar(lista);
-        break;
-        case 4:
-            mostrar(lista);
-        break;
-
-
+void read(){
+    Persona *p;
+    //Creacion de variable para leer datos
+    ifstream in("datos.bin", ios::binary); //Abre archivos.bin
+    if(in.is_open()){
+        while(!in.eof()){
+            in.read((char *) &p->edad, sizeof(int));
+            in.read((char *) &p->lenName, sizeof(int));
+            in.read((char *) &p->nombre, p->lenName);
+            p=p->next;
+            p->prev=p;
         }
-        cout<<"\n\nQuieres otra operaci_n 1.Si 2.NO: "; cin>>opc;
-    }while(opc==1);
-
-
+    }else{
+        cout << "Error de apertura de archivo." << endl;
+    }
+    in.clear();
+    in.close();
+    cout << "\nARCHIVO LEIDO:\n";
+    showPerson(p);
+    
 }
 
-void insInicio(Nodo *&lista, int n){
-    Nodo *nvo_nodo = new Nodo();
-    nvo_nodo->dato = n;
-    nvo_nodo->next = lista;
-    nvo_nodo->prev = NULL;
+void addPerson(Persona *&pList)
+{
+    Persona *nvaPerson = new Persona();
+    cout << "\nIngresa el nombre: ";
+    cin.getline(nvaPerson->nombre, 25, '\n');
+    cout << "Ingresa la edad: ";
+    cin >> nvaPerson->edad;
+    nvaPerson->lenName = (int)strlen(nvaPerson->nombre);
+    nvaPerson->next = pList;
+    nvaPerson->prev = NULL;
 
-    if(lista != NULL)
-        lista->prev = nvo_nodo;
+    if(pList != NULL)
+        pList->prev = nvaPerson;
 
-    lista = nvo_nodo;
-}
-void insFin(Nodo *&lista,int n){
-    Nodo *nvo_nodo = new Nodo(); //1. Crear nodo
-    Nodo *ultimo = lista; //Se usa en el paso 5
-    nvo_nodo->dato = n; //2. Ponemos dato(s)
-
-    nvo_nodo->next = NULL; //3. Como es _ltimo nodo, next apunta a NULL
-
-    if(lista == NULL){//4. Si la lista est_ vac_a, el nvo_nodo es lista
-        nvo_nodo->prev = NULL; //El campo previo apunta a NULL
-        lista = nvo_nodo; //Lista ahora es Nvo_nodo, y por ende el sig apunta a NULL
-        return; //Se sale de la funci_n
-    }
-
-    while(ultimo->next != NULL)//5. De otro modo, hay que recorrer la lista
-        ultimo = ultimo->next; //Ultimo, ahora es lo que ten_a ultimo en su campo siguiente
-
-    ultimo->next = nvo_nodo;  //6. Cuando ya llegamos al final, insertamos el nvo nodo en SIGUIENTE
-    nvo_nodo->prev = ultimo;  //7. Y el nvo nodo, en PREVIO apunta a donde est_ _ltimo.
-}
-void mostrar(Nodo *lista){
-    Nodo *last;
-    cout<<"Mostrando hacia adelante: ";
-    while(lista != NULL){
-        cout<<lista->dato<<" ";
-        last = lista;
-        lista = lista->next;
-    }
-    cout<<endl;
-    cout<<"Mostrando hacia atras: ";
-    while(last != NULL){
-        cout<<last->dato<<" ";
-        last = last->prev;
-    }
-}
-void borrarPos(Nodo *&lista,int n){
-    if(lista == NULL || n<=0){//Si la lista est_ vacia o la posici_n es inv_lida
-        cout<<"Lista vac_a o posici_n no v_lida"<<endl;
-        return; //Finaliza funci_n
-    }
-
-    Nodo *actual = lista;
-    for(int i=1; actual!=NULL && i<n ;i++)//Moverse desde 1 hasta la posici_n dada
-        actual = actual->next; //Se mueve a la siguiete posicion
-
-    if(actual == NULL){ //Si la posicion fue m_s alta que el tama_o de la lista
-        cout<<"Posici_n fuera de rango"<<endl;
-        return; //Finaliza
-    }
-    //Si se encuentra en la primera posicion, se mueve hacia la siguiente
-    if(lista == actual)
-        lista = actual->next;
-
-    //Si se encuentra en medio o en
-    if(actual->next != NULL)
-        actual->next->prev = actual->prev; //Doble secuencia para llegar al apuntador del siguiente nodo
-
-    if(actual->prev != NULL)
-        actual->prev->next = actual->next; //Doble secuencia para llegar al apuntador del siguiente nodo
-
-    delete(actual);
-
+    pList = nvaPerson;
 }
 
+int main() {
+    Persona *pList = new Persona();
+    
+    addPerson(pList);
+    showPerson(pList);
+    cin.ignore();
+    write(pList);
+    read();
+//    addPerson(pList);
+//    showPerson(pList);
+//    write(pList);
 
-
-
-
-
-
-
+    // read();
+}

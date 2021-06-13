@@ -15,7 +15,7 @@ int main() {
     mostrarIntro();
     do{
         int opc=0;
-        cout << "TEST" << endl;
+        // cout << "TEST" << endl;
         opc = mostrarMenu();
         cin.ignore();
         opc==11 ? salir=2 : salir=1;
@@ -24,42 +24,35 @@ int main() {
 }
 
 void selecOpc(Smoking *&lista, int opc){
-    int num=0;
-    Smoking *auxList = nullptr;
     switch (opc)
     {
     case 1:
-        do{
-            mostrarTitle();
-            addSuit(lista);
-            cout << "\nAgregar otro traje 1.SI 2.NO: ";
-            cin >> num;
-        }while(num==1);
+        addSuit(lista); // 32 VERDE
         break;
     case 2:
-        mostrarTitle();
-        removeSuit(lista);
+        removeSuit(lista); //31 ROJO
         break;
     case 3:
-        /* code */
+        checkData(lista); // 33 AMARILLO
         break;
     case 4:
-        showSuits(lista);
+        showSuits(lista); // 36 AZUL CLARO
         break;
     case 5:
-        searchBySize(lista, auxList);
+        //FIXME Corregir funcion
+        searchBySize(lista); // 33 AMARILLO
         break;
     case 6:
-        // searchByID(lista);
+        searchByID(lista);
         break;
     case 7:
-        /* code */
+        // writeFile(lista);
         break;
     case 8:
         /* code */
         break;
     case 9:
-        assignSuit(lista);
+        assignSuit(lista); //37 BLANCO
         break;
     case 10:
         /* code */

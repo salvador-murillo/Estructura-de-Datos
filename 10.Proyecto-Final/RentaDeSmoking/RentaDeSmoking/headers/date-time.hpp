@@ -1,8 +1,12 @@
 #pragma once
 
-int day(tm *ltm);
-int month(tm *ltm);
-int year(tm *ltm);
-int hour(tm *ltm);
-int minutes(tm *ltm);
-int seconds(tm *ltm);
+int day(tm *);
+int month(tm *);
+int year(tm *);
+int hour(tm *);
+int minutes(tm *);
+int seconds(tm *);
+std::string getDate(tm *);
+std::string getTime(tm *);
+void returnDate(int &, int &, int &);
+void validDate(int &, int &, int &);
