@@ -1282,8 +1282,11 @@ void receiveSuit(Smoking *&lista)
                                         cin.ignore();
                                         pressEnter();
                                         trajeEntregado=true;
-                                    }
-                                    precioValid=true;
+                                        precioValid=true;
+                                    }else
+                                    {
+                                        cout << "\n\033[1;31mNOTA!\033[0m La cantidad a pagar es menor a la cantidad restante";
+                                    }  
                                 }
                                 else
                                     cout << "\nLa cantidad debe de ser positiva";
@@ -1335,7 +1338,7 @@ void receiveSuit(Smoking *&lista)
                             cout << "\n                Abonando $"<< actual->totalAbono;
                             cout << "\n                \033[1;33mRestante $"<< actual->totalRestante;
                             cout << "\n\033[7;33m*****************************";
-                            while(precioValid==false)
+                            while(precioValid==false )
                             {
                                 cout << "\n\n\033[0mIngrese la cantidad a pagar $";
                                 cin >> cantPagar;
@@ -1348,8 +1351,12 @@ void receiveSuit(Smoking *&lista)
                                         cin.ignore();
                                         pressEnter();
                                         trajeEntregado=true;
+                                        precioValid=true;
                                     }
-                                    precioValid=true;
+                                    else
+                                    {
+                                        cout << "\n\033[1;31mNOTA!\033[0m La cantidad a pagar es menor a la cantidad restante";
+                                    }   
                                 }
                                 else
                                     cout << "\nLa cantidad debe de ser positiva";
