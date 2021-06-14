@@ -49,8 +49,8 @@ int mostrarMenu(){
              << "\n 4.\033[1;36mMostrar todos los registros\033[0m"
              << "\n 5.\033[1;36mBuscar por talla y mostrar resultados\033[0m"
              << "\n 6.\033[1;36mBuscar por ID y mostrar resultados\033[0m"
-             << "\n 7.\033[1;36mGuardar registros de la lista en un archivo binario\033[0m"
-             << "\n 8.\033[1;36mConsultar los datos del archivo\033[0m"
+             << "\n 7.\033[1;36mGuardar registros de la lista en un archivo binario \033[1;31m(NO FUNCIONAL)\033[0m"
+             << "\n 8.\033[1;36mConsultar los datos del archivo \033[1;31m(NO FUNCIONAL)\033[0m"
              << "\n 9.\033[1;36mAsignar préstamo de Smoking por ID\033[0m"//, cambiando su estatus de alquilado, nombre de cliente, anticipo y fecha de préstamo
              << "\n10.\033[1;36mRecibir Smoking por ID\033[0m"// y cambiando el estatus de alquilado, fecha de devolución, 
             //ajustar cantidad pagada si es necesario… es decir dejar el nodo de ese smoking listo para un siguiente préstamo.

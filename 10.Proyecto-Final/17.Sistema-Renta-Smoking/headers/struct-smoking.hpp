@@ -27,13 +27,14 @@ void suitID(Smoking *&, Smoking *);       //DONE  Coloca datos para addSuit
 void dataSuit(Smoking *&);                //DONE  Coloca datos para addSuit
 void addSuit(Smoking *&);                 //DONE  1 Añade nuevo traje
 void removeSuit(Smoking *&);              //DONE  2 Elimina traje por su ID
-void checkData(Smoking *);                //DONE    Revisa si existe smokings y si es posible editarlos
+void checkData(Smoking *);                //DONE  - Revisa si existe smokings y si es posible editarlos
 void editData(Smoking *, Smoking *&, int);//DONE  3 Modifica datos de un smoking  
-void show1Suit(Smoking *);                //DONE    Muestra un traje
+void show1Suit(Smoking *);                //DONE  - Muestra un traje
 void showSuits(Smoking *);                //DONE  4 Muestra todos los trajes hasta el momento
-void searchBySize(Smoking *);             //FIXME 5 Error en creacion de lista personalizada
-void searchByID(Smoking *);               //TODO  6
+void searchBySize(Smoking *);             //DONE  5 Busqueda por tamaño
+void searchByID(Smoking *);               //DONE  6 Busqueda por ID
 void writeFile(Smoking *);                //TODO  7 Guardar registros en archivo Binario
 void readFile(Smoking *);                 //TODO  8 Leer registros en archivo Binario
 void assignSuit(Smoking *&);              //DONE  9 Asigna traje por ID
-// void receiveSuit(Smoking *&);          //TODO 10
+int checkMonth(Smoking *, int , int , int );
+void receiveSuit(Smoking *&);             //TODO 10

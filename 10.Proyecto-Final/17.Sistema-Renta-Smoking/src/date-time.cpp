@@ -83,8 +83,7 @@ void returnDate(int &diaFecha, int &mesFecha, int &anioFecha){
     }
 }
 
-void validDate(int &diaFecha, int &mesFecha, int &anioFecha){
-    
+void validDate(int &diaFecha, int &mesFecha, int &anioFecha){    
     int dia = diaFecha, mes = mesFecha, anio = anioFecha;
     int opcAnio = 0, opcMes = 0, opcDia = 0;
 

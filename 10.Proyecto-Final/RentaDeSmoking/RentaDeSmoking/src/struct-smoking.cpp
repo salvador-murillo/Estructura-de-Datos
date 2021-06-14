@@ -867,12 +867,15 @@ void searchByID(Smoking *lista)
     {
         while(searchAgain==1)
         {
+            idValid=0;
+            aux=lista;
             mostrarTitle();
             cout << "\n\t\033[7;33m***** BUSQUEDA POR ID *****\033[0m\n";
             cout << "\nIngresa el ID a buscar: ";
             cin >> getID;
             if(getID>0 && getID<10000)
             {
+                //FIXME Corregir busqueda
                 while(aux!=nullptr && idValid == 0)
                 {
                     if(aux->id==getID)
@@ -880,17 +883,11 @@ void searchByID(Smoking *lista)
                         cin.ignore();
                         mostrarTitle();
                         show1Suit(aux);
-                        pressEnter();
                         idValid=1;
                     }
                     else
                         aux=aux->next;
                 }
-                if(idValid==0){
-                    cout << "\n\033[1;31mNOTA!\033[0m ID no encontrado, buscar otro ? 1-SI 2-NO: ";
-                    cin >> searchAgain;
-                }
-                delete(aux);
             }
             else
             {
@@ -899,6 +896,14 @@ void searchByID(Smoking *lista)
                 cin.ignore();
                 pressEnter();
             }
+            if(idValid==0){
+                cout << "\n\033[1;31mNOTA!\033[0m ID no encontrado, buscar otro ? 1-SI 2-NO: ";
+                cin >> searchAgain;
+            }else{
+                cout << "\nBuscar/Mostrar otro? 1-SI 2-NO:";
+                cin >> searchAgain;
+            }
+            delete(aux);
         }
     }
 }

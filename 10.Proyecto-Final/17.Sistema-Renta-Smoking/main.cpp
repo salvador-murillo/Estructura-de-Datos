@@ -15,7 +15,7 @@ int main() {
     mostrarIntro();
     do{
         int opc=0;
-        // cout << "TEST" << endl; 
+        cout << "TEST" << endl; 
         opc = mostrarMenu();
         cin.ignore();
         opc==11 ? salir=2 : salir=1;
@@ -39,23 +39,22 @@ void selecOpc(Smoking *&lista, int opc){
         showSuits(lista); // 36 AZUL CLARO
         break;
     case 5:
-        //FIXME Corregir funcion
         searchBySize(lista); // 33 AMARILLO
         break;
     case 6:
         searchByID(lista);
         break;
     case 7:
-        // writeFile(lista);
+        writeFile(lista);
         break;
     case 8:
-        /* code */
+        // readFile(lista);
         break;
     case 9:
         assignSuit(lista); //37 BLANCO
         break;
     case 10:
-        /* code */
+        receiveSuit(lista);
         break;
     default:
         break;

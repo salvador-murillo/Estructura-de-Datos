@@ -223,7 +223,7 @@ void removeSuit(Smoking *&lista)
             }
             else
             {
-                cout << "\nNOTA! Numero negativo o mayor de 4 digitos";
+                cout << "\n\033[1;31mNOTA! \033[0mNumero negativo o mayor de 4 digitos";
                 cout << "\n\nBuscar/Borrar otro? 1-SI 2-NO: ";
                 cin >> opc;
                 if(opc==1) cin.ignore(); else return;
@@ -235,7 +235,7 @@ void removeSuit(Smoking *&lista)
             // cout << "\nEl ID si existe";
             if(actual->isAlquilado != true)
             {
-                cout << "\nEl smoking NO se encuentra alquilado";
+                cout << "\n\033[1;34mNOTA!\033[1;37m Traje en tienda\033[0m";
                 //Funcion Borrar Smoking
                 //Si se encuentra en la primera posicion, se mueve hacia la siguiente
                 if(lista == actual)
@@ -249,16 +249,16 @@ void removeSuit(Smoking *&lista)
                     actual->prev->next = actual->next; //Doble secuencia para llegar al apuntador del siguiente nodo
 
                 delete(actual);
-                cout << "\nSe ha borrado el smoking del sistema";
+                cout << "\nSe ha borrado el traje del sistema";
             }
             else{
                 //Condicion si esta alquilado NO se puede dar de baja
-                cout << "\n033[31mNOTA!\033[0m El smoking se encuentra alquilado";
+                cout << "\n\033[1;31mNOTA!\033[1;37m Traje alquilado\033[0m";
                 cout << "\nNo se puede borrar hasta que se entregue";
             }
         }
         else if(numValid == true && lista !=nullptr)
-            cout << "\nEl ID no existe";
+            cout << "\n\033[1;31mNOTA!\033[0m El ID no existe";
         
         cout << "\n\nBuscar/Borrar otro? 1-SI 2-NO: ";
         cin >> opc;
@@ -273,74 +273,77 @@ void checkData(Smoking *lista)
     int opc = 1, opcData = 0;
     bool idValid = false, numValid = false, searchAgain = false;
     Smoking *actual = new Smoking();
-
-    while(searchAgain == false)
+     
+    //Lista Vacia
+    if(lista == nullptr)
     {
-        edit=1;
-        //Lista Vacia
-        if(lista == nullptr)
+        mostrarTitle();
+        cout << "\n     \033[7;33m***** MODIFICAR DATOS TRAJES *****\033[0m\n";
+        cout<<"\n\033[1;31mNOTA!\033[0m No hay smokings disponibles para modificar" << endl;
+        pressEnter();
+        return;
+    }
+    else
+    {
+        while(searchAgain == false)
         {
-            mostrarTitle();
-            cout << "\n     \033[7;33m***** MODIFICAR DATOS TRAJES *****\033[0m\n";
-            cout<<"\n\033[1;31mNOTA!\033[0m No hay smokings disponibles para modificar" << endl;
-            pressEnter();
-            return;
-        }
-        //Validar que existe el ID
-        while(numValid == false && lista !=nullptr)
-        {
-            mostrarTitle();
-            cout << "\n     \033[7;33m***** MODIFICAR DATOS TRAJES *****\033[0m\n";
-            actual = lista;
-            idValid = false;
-            cout << "\nIngresa el ID del Smoking a modificar: ";
-            cin >> getID;
-            if(getID>0 && getID<10000)
+            edit=1;
+            //Validar que existe el ID
+            while(numValid == false && lista !=nullptr)
             {
-                numValid = true;
-                while (actual != nullptr && idValid == false)
+                mostrarTitle();
+                cout << "\n     \033[7;33m***** MODIFICAR DATOS TRAJES *****\033[0m\n";
+                actual = lista;
+                idValid = false;
+                cout << "\nIngresa el ID del Smoking a modificar: ";
+                cin >> getID;
+                if(getID>0 && getID<10000)
                 {
-                    if(actual->id == getID)
-                        idValid = true;
-                    if(idValid==false)
-                        actual = actual->next;
+                    numValid = true;
+                    while (actual != nullptr && idValid == false)
+                    {
+                        if(actual->id == getID)
+                            idValid = true;
+                        if(idValid==false)
+                            actual = actual->next;
+                    }
+                }
+                else
+                {
+                    cout << "\n\033[1;31mNOTA!\033[0m Numero negativo o mayor de 4 digitos" << endl;
+                    cout << "\nBuscar/Modificar otro traje? 1-SI 2-NO: ";
+                    cin >> opc;
+                    if(opc==1) cin.ignore(); else return;
                 }
             }
-            else
+            //Si el ID existe y es valido, comprobar que NO este alquilado
+            if(numValid == true && idValid == true)
             {
-                cout << "\n\033[1;31mNOTA!\033[0m Numero negativo o mayor de 4 digitos" << endl;
-                cout << "\nBuscar/Modificar otro traje? 1-SI 2-NO: ";
-                cin >> opc;
-                if(opc==1) cin.ignore(); else return;
-            }
-        }
-        //Si el ID existe y es valido, comprobar que NO este alquilado
-        if(numValid == true && idValid == true)
-        {
-            // cout << "\nEl ID si existe";
-            if(actual->isAlquilado == true)
-            {
-                cout << "\n\033[1;34mNOTA!\033[0m El smoking se encuentra alquilado" << endl;
-                cout << "\nDeseas modificar los datos? 1-SI 2-NO: ";
-                cin >> edit;
-            }
+                // cout << "\nEl ID si existe";
+                if(actual->isAlquilado == true)
+                {
+                    cout << "\n\033[1;34mNOTA!\033[0m El smoking se encuentra alquilado" << endl;
+                    cout << "\nDeseas modificar los datos? 1-SI 2-NO: ";
+                    cin >> edit;
+                }
 
-            while(edit==1)
-            {
-                cin.ignore();
-                opcData=menuDatabyID();
-                //Funcion Modificar Smoking
-                editData(actual, lista, opcData);
-                cout << "\nEditar otro dato del traje seleccionado? 1-SI 2-NO: ";
-                cin >> edit;
+                while(edit==1)
+                {
+                    cin.ignore();
+                    opcData=menuDatabyID();
+                    //Funcion Modificar Smoking
+                    editData(actual, lista, opcData);
+                    cout << "\nEditar otro dato del traje seleccionado? 1-SI 2-NO: ";
+                    cin >> edit;
+                }
             }
+            else if(numValid == true && lista !=nullptr)
+                cout << "\n\033[1;31mNOTA!\033[0m El ID no existe" << endl;
+            cout << "\nBuscar/Modificar otro traje? 1-SI 2-NO: ";
+            cin >> opc;
+            (opc==1) ? numValid = false : searchAgain = true;
+            pressEnter();
         }
-        else if(numValid == true && lista !=nullptr)
-            cout << "\n\033[1;31mNOTA!\033[0m El ID no existe" << endl;
-        cout << "\nBuscar/Modificar otro traje? 1-SI 2-NO: ";
-        cin >> opc;
-        (opc==1) ? numValid = false : searchAgain = true;
-        pressEnter();
     }
 }
 
@@ -751,7 +754,7 @@ void editData(Smoking *actual, Smoking *&lista, int opc)
 
 void show1Suit(Smoking *lista)
 {
-    cout << "\n\t\033[7;33m***** DATOS DEL TRAJE *****\033[0m\n";
+    cout << "\n \t\033[7;33m***** DATOS DEL TRAJE *****\033[0m\n";
     cout << "\n\033[1;3;37mID:\033[0m " << lista->id;
     cout << "  \033[1;3;37mSTATUS:\033[0m "; (lista->isAlquilado==false) ? cout << "\033[1;33mDisponible": cout << "\033[1;31mAlquilado";
     cout << "\n\033[1;3;37m\nMARCA:\033[0m " << lista->marca;
@@ -762,7 +765,7 @@ void show1Suit(Smoking *lista)
     cout << "\n\033[1;3;37mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
     cout << "\n\033[1;3;37m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
     cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
-    cout << " - \033[1;3;37mENTREGA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
+    cout << " - \033[1;3;37mENTREGA ESTIMADA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
     cout << "\n\033[1;3;37m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
     cout << "\n\033[1;3;37mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
     cout << "\n\033[1;3;37mTOTAL ABONO    $\033[0m" << lista->totalAbono;
@@ -799,7 +802,7 @@ void showSuits(Smoking *lista)
         cout << "\n\033[1;3;37mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
         cout << "\n\033[1;3;37m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
         cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
-        cout << " - \033[1;3;37mENTREGA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
+        cout << " - \033[1;3;37mENTREGA ESTIMADA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
         cout << "\n\033[1;3;37m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
         cout << "\n\033[1;3;37mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
         cout << "\n\033[1;3;37mTOTAL ABONO    $\033[0m" << lista->totalAbono;
@@ -818,7 +821,10 @@ void showSuits(Smoking *lista)
 
 void searchBySize(Smoking *lista)
 {
-    int getSize = 0, opc = 0;
+    int getSize = 0,  searchAgain = 1, sameSize = 0;
+    bool sizeNotNull = true;
+    Smoking *aux = lista;
+
     //Lista Vacia
     if(lista == nullptr)
     {
@@ -828,30 +834,56 @@ void searchBySize(Smoking *lista)
         pressEnter();
         return;
     }
-    //Checar items iguales
-    do{
-        Smoking *aux = new Smoking();
-        aux=lista;
-        mostrarTitle();
-        cout << "\n\t\033[7;33m***** BUSQUEDA POR TALLA *****\033[0m\n";
-        cout << "\nTALLAS: 1.CHICA 2.MEDIANA 3.GRANDE";
-        cout << "\nIngresa la talla a mostrar: ";
-        cin >> getSize;
-        if(checkSize(getSize)==true)
+    else
+    {
+        while(searchAgain == 1)
         {
-          
-           
-        }else
-            cout << "\nTalla NO existente\n";
-        cout << "\nBuscar/Mostrar de nuevo ? 1-SI 2-NO: ";
-        cin >> opc;
-    }while (opc!=2);
+            mostrarTitle();
+            cout << "\n\t\033[7;33m***** BUSQUEDA POR TALLA *****\033[0m\n";
+            aux=lista;
+            sizeNotNull = true;
+            cout << "\n\033[1;36mTALLA A FILTRAR\033[1;35m\n1.Chica 2.Mediana 3.Grande\033[0m: ";
+            cin >> getSize;
+            if(checkSize(getSize)==true)
+            {
+                //Contar trajes iguales
+                while(aux!=nullptr){
+                    if(aux->talla==getSize)
+                        sameSize++;
+                    aux=aux->next;
+                }
+                delete(aux);
+                aux=lista;
+                while(aux!=nullptr)
+                {
+                    if(aux->talla==getSize){
+                        cin.ignore();
+                        mostrarTitle();
+                        show1Suit(aux);
+                        sameSize--;
+                        sizeNotNull = false;
+                        (sameSize>0)
+                            ? cout << "\nPresione \033[1;34menter\033[0m para mostrar siguiente..."
+                            : cout << "\n\033[1;31mNOTA!\033[0m No hay mas trajes de esta talla";
+                    }
+                    aux=aux->next;
+                }
+            }
+            else
+                cout << "\n\033[1;31mNOTA!\033[0m Numero NO valido";
+
+            if(sizeNotNull)
+                cout << "\n\033[1;31mNOTA!\033[0m No existen trajes de la talla seleccionada";
+            cout << "\n\nBuscar/filtrar otra talla? 1-SI 2-NO:";
+            cin >> searchAgain;
+        }
+    }
+    
 }
 
 void searchByID(Smoking *lista)
 {
-    int getID = 0, searchAgain=1;
-    bool idValid = 0;
+    int getID = 0,  searchAgain = 1, idValid = 0;
     Smoking *aux = lista;
     
     //Lista Vacia
@@ -865,16 +897,16 @@ void searchByID(Smoking *lista)
     }
     else
     {
-        while(searchAgain==1)
+        while(searchAgain == 1)
         {
-            idValid=0;
             mostrarTitle();
             cout << "\n\t\033[7;33m***** BUSQUEDA POR ID *****\033[0m\n";
+            aux=lista;
+            idValid=0;
             cout << "\nIngresa el ID a buscar: ";
             cin >> getID;
             if(getID>0 && getID<10000)
             {
-                //FIXME Corregir busqueda
                 while(aux!=nullptr && idValid == 0)
                 {
                     if(aux->id==getID)
@@ -886,23 +918,20 @@ void searchByID(Smoking *lista)
                     }
                     else
                         aux=aux->next;
-                    delete(aux);
                 } 
             }
             else
             {
                 cout << "\n\033[1;31mNOTA!\033[0m Numero negativo o mayor de 4 digitos" << endl;
-                searchAgain=1;
-                cin.ignore();
-                pressEnter();
+                idValid=1;
             }
+
             if(idValid==0){
-                cout << "\n\033[1;31mNOTA!\033[0m ID no encontrado, buscar otro ? 1-SI 2-NO: ";
-                cin >> searchAgain;
-            }else{
-                cout << "\nBuscar/Mostrar otro? 1-SI 2-NO:";
-                cin >> searchAgain;
+                cout << "\n\033[1;31mNOTA!\033[0m Este ID no existe" << endl;
             }
+
+            cout << "\nBuscar/Mostrar otro? 1-SI 2-NO:";
+            cin >> searchAgain;
         }
     }
 }
@@ -988,11 +1017,13 @@ void writeFile(Smoking *lista)
     // pressEnter();
 }
 
-void assignSuit(Smoking *&lista){
+void assignSuit(Smoking *&lista)
+{
     int num = 0, opc = 0, diasP = 0;
     //Crear variable para obtener fecha y hora del sistema
     time_t now = time(0);
-    // now = now - 18000; //NOTE Usar para REPL
+    //HACK Usar para REPL
+    // now = now - 18000;
     tm *ltm = localtime(&now);
 
     //Lista Vacia
@@ -1122,4 +1153,264 @@ void assignSuit(Smoking *&lista){
         cout << "\n\033[1;37mAsignar/Buscar otro?\033[0m 1-SI 2-NO: ";
         cin >> opc;
     }while(opc!=2);
+}
+
+int checkMonth(Smoking *actual, int dia, int mes, int anio){
+    int diasP=0;
+
+    if(anio==actual->fechaEntrega.year){
+        if(mes==actual->fechaEntrega.month){
+            diasP = dia-actual->fechaEntrega.day;
+        }else if(mes>actual->fechaEntrega.month){
+            if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12)
+            {
+                diasP=31-actual->fechaEntrega.day+dia;
+            }
+            else if(mes==4 || mes==6 || mes==9 || mes==11)
+            {
+                diasP=30-actual->fechaEntrega.day+dia;
+            }
+            else if(mes==2)
+            {
+                diasP=28-actual->fechaEntrega.day+dia; 
+            }
+        }
+    }
+    return diasP;
+}
+
+void receiveSuit(Smoking *&lista)
+{
+    int getID = 0,  searchAgain = 1;
+    float cantPagar = 0;
+    bool idValid = false, suitInShop = false, suitFound = false, precioValid = false;
+    Smoking *aux = lista;
+    Smoking *actual = new Smoking();
+    
+    //Crear variable para obtener fecha y hora del sistema
+    time_t now = time(0);
+    //HACK Usar para REPL
+    // now = now - 18000;
+    tm *ltm = localtime(&now);
+
+    //Lista Vacia
+    if(lista == nullptr)
+    {
+        mostrarTitle();
+        cout << "\n\t\033[7;32m***** DEVOLUCION DE TRAJE *****\033[0m\n";
+        cout << "\nNo existen trajes alquilados por el momento " << endl;
+        pressEnter();
+        return;
+    }
+    else
+    {
+        while(searchAgain == 1)
+        {
+            mostrarTitle();
+            cout << "\n\t\033[7;32m***** DEVOLUCION DE TRAJE *****\033[0m\n";
+            aux=lista;
+            idValid = false;
+            suitInShop = false;
+            suitFound = false;
+            cout << "\nIngresa el ID a buscar: ";
+            cin >> getID;
+            //Determinar si existe, ademas si esta alquilado o no
+            if(getID>0 && getID<10000)
+            {
+                idValid=true;
+                while(aux!=nullptr)
+                {
+                    if(aux->id==getID && aux->isAlquilado==true){
+                        suitInShop = false;
+                        suitFound = true;
+                        actual = aux;
+                    }else if(aux->id==getID && aux->isAlquilado==false){
+                        suitInShop = true;
+                        suitFound = true;
+                    }
+                    aux=aux->next;
+                } 
+            }
+            
+            int diaS = actual->fechaEntrega.day, mesS = actual->fechaEntrega.month, anioS = actual->fechaEntrega.year;
+            int diaE = actual->fechaDevolucion.day, mesE = actual->fechaDevolucion.month, anioE = actual->fechaDevolucion.year;
+            int dia = day(ltm), mes = month(ltm), anio = year(ltm), diaP = 0, opcDate = 0, cambio = 0;
+            bool dateOK = false, diaPrestaOk = false, trajeEntregado=false;
+
+            //Realizar operaciones de recepcion
+            if(idValid==true && suitInShop == false && suitFound == true)
+            {
+                while(dateOK == false){
+                    cin.ignore();
+                    mostrarTitle();
+                    show1Suit(actual);
+                    cout << "\n\033[7;35mFECHA DE ENTREGA\033[0m";
+                    cout << "\nRealizo la entrega hoy? 1-SI 2-NO:";
+                    cin >> opcDate;
+                    mostrarTitle();
+                    cout << "\n\t\033[7;32m***** DEVOLUCION DE TRAJE *****\033[0m\n";
+                    if(opcDate==1)
+                    {
+                        diaP = dia-diaS;
+                        cout << "\n      Fecha Entrega \033[1;33m" << actual->fechaEntrega.day << "/" << actual->fechaEntrega.month << "/" << actual->fechaEntrega.year;
+                        cout << "\n\033[0mDevolucion Estimada \033[1;33m" << actual->fechaDevolucion.day << "/" << actual->fechaDevolucion.month << "/" << actual->fechaDevolucion.year;
+                        cout << "\n\033[0mDevolucion   Actual \033[1;34m" << dia << "/" << mes << "/" << anio << endl;
+                        if((diaP>=1 && diaP<=10) && (anio==anioE) && (mes==mesE || mes==mesS))
+                        {
+                            dateOK=true;
+                            if(diaP!=actual->diasPrestamo)
+                                cout << "\n  \033[1;31mHa cambiado el pago total";
+
+                            actual->diasPrestamo=diaP;
+                            actual->totalPagar=actual->diasPrestamo*actual->precioDiario;
+                            actual->totalRestante=actual->totalPagar-actual->totalAbono;
+                            cout << "\n\033[7;33m**************RESUMEN DE PAGO\033[0m";
+                            cout << "\n              Pago Total $"<< actual->totalPagar;
+                            cout << "\n                Abonando $"<< actual->totalAbono;
+                            cout << "\n                \033[1;33mRestante $"<< actual->totalRestante;
+                            cout << "\n\033[7;33m*****************************";
+                            while(precioValid==false)
+                            {
+                                cout << "\n\n\033[0mIngrese la cantidad a pagar $";
+                                cin >> cantPagar;
+                                if(cantPagar>=0)
+                                {
+                                    if(cantPagar>=actual->totalRestante)
+                                    {
+                                        cambio=cantPagar-actual->totalRestante;
+                                        cout << "\nSu cambio es de $" << cambio;
+                                        cin.ignore();
+                                        pressEnter();
+                                        trajeEntregado=true;
+                                    }
+                                    precioValid=true;
+                                }
+                                else
+                                    cout << "\nLa cantidad debe de ser positiva";
+                            }
+                        }
+                        else if(diaP==0)
+                        {
+                            cout << "\n\033[1;31mNOTA!\033[0m No puedes solicitar y entregar el traje el mismo dia" << endl;
+                            dateOK=false;
+                            pressEnter();
+                        }
+                        else
+                        {
+                            cout << "\n\033[1;31mNOTA!\033[0m El traje solo se presta por minimo 1 dia y maximo 10" << endl;
+                            dateOK=false;
+                            pressEnter();
+                        }
+                    }
+                    else if(opcDate==2)
+                    {
+                        while(diaPrestaOk==false){
+                            cout << "\nIngresa el dia: "; cin >> dia;
+                            cout << "\nIngresa el mes: "; cin >> mes;
+                            cout << "\nIngresa el anio: "; cin >> anio;
+                            diaP = checkMonth(actual, dia, mes, anio);
+                            if(diaP>=1 && diaP<=10){
+                                diaPrestaOk=true;
+                            }else{
+                                cout << "\n\033[1;31mNOTA!\033[0m Fecha entrega no valida, no debe de exceder diez dias despues del " << actual->fechaEntrega.day << "/" << actual->fechaEntrega.month << "/" << actual->fechaEntrega.year << endl;
+                            }
+                        }
+                        mostrarTitle();
+                        cout << "\n\t\033[7;32m***** DEVOLUCION DE TRAJE *****\033[0m\n";
+                        cout << "\n      Fecha Entrega \033[1;33m" << actual->fechaEntrega.day << "/" << actual->fechaEntrega.month << "/" << actual->fechaEntrega.year;
+                        cout << "\n\033[0mDevolucion Estimada \033[1;33m" << actual->fechaDevolucion.day << "/" << actual->fechaDevolucion.month << "/" << actual->fechaDevolucion.year;
+                        cout << "\n\033[0mDevolucion   Actual \033[1;34m" << dia << "/" << mes << "/" << anio << endl;
+
+                        if((diaP>=1 && diaP<=10) && (anio==anioE) && (mes==mesE || mes==mesS))
+                        {
+                            dateOK=true;
+                            if(diaP!=actual->diasPrestamo)
+                                cout << "\n  \033[1;31mHa cambiado el pago total";
+
+                            actual->diasPrestamo=diaP;
+                            actual->totalPagar=actual->diasPrestamo*actual->precioDiario;
+                            actual->totalRestante=actual->totalPagar-actual->totalAbono;
+                            cout << "\n\033[7;33m**************RESUMEN DE PAGO\033[0m";
+                            cout << "\n              Pago Total $"<< actual->totalPagar;
+                            cout << "\n                Abonando $"<< actual->totalAbono;
+                            cout << "\n                \033[1;33mRestante $"<< actual->totalRestante;
+                            cout << "\n\033[7;33m*****************************";
+                            while(precioValid==false)
+                            {
+                                cout << "\n\n\033[0mIngrese la cantidad a pagar $";
+                                cin >> cantPagar;
+                                if(cantPagar>=0)
+                                {
+                                    if(cantPagar>=actual->totalRestante)
+                                    {
+                                        cambio=cantPagar-actual->totalRestante;
+                                        cout << "\nSu cambio es de $" << cambio;
+                                        cin.ignore();
+                                        pressEnter();
+                                        trajeEntregado=true;
+                                    }
+                                    precioValid=true;
+                                }
+                                else
+                                    cout << "\nLa cantidad debe de ser positiva";
+                            }
+                        }
+                        else if(diaP==0)
+                        {
+                            cout << "\n\033[1;31mNOTA!\033[0m No puedes solicitar y entregar el traje el mismo dia" << endl;
+                            dateOK=false;
+                            pressEnter();
+                        }
+                        else
+                        {
+                            cout << "\n\033[1;31mNOTA!\033[0m El traje solo se presta por minimo 1 dia y maximo 10" << endl;
+                            dateOK=false;
+                            pressEnter();
+                        }
+                    }
+                    else
+                    {
+                        cout << "\n\033[1;31mNOTA!\033[0m Opcion No valida" << endl;
+                    }
+                }
+
+            }
+            else if(idValid==true && suitInShop == true && suitFound == true)
+            {
+                cout << "\n\033[1;35mNOTA!\033[0m El Traje con este ID se encuentra en tienda" << endl;
+            }
+            else if(idValid==true && suitInShop == false && suitFound == false)
+            {
+                cout << "\n\033[1;31mNOTA!\033[0m Este ID no existe" << endl;
+            }
+            else
+            {
+                cout << "\n\033[1;31mNOTA!\033[0m Numero negativo o mayor de 4 digitos" << endl;
+            }
+
+            if(trajeEntregado==true)
+            {
+                actual->fechaEntrega.day = 0;
+                actual->fechaEntrega.month = 0;
+                actual->fechaEntrega.year = 0;
+                actual->fechaDevolucion.day = 0;
+                actual->fechaDevolucion.month = 0;
+                actual->fechaDevolucion.year = 0;
+                actual->diasPrestamo=0;
+                actual->isAlquilado=false;
+                actual->totalPagar = 0;
+                actual->totalAbono = 0;
+                actual->totalRestante = 0;
+                strcpy(actual->nombreCliente, "Sin Asignar");
+                
+                mostrarTitle();
+                show1Suit(actual);
+                cout << "\n\033[1;35mNOTA!\033[0m Se ha entregado el traje, se encuentra listo para ser alquilado" << endl;
+            }
+
+            
+            cout << "\nBuscar/Mostrar otro? 1-SI 2-NO: ";
+            cin >> searchAgain;
+        }
+    }
 }
