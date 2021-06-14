@@ -5,7 +5,7 @@
 using namespace std;
 
 void mostrarIntro(){
-    // cout << "\033[2J\033[0;0H";
+    cout << "\033[2J\033[0;0H";
     cout << "\t\t\033[1;31mProyecto Final: Sistema de Renta de Smoking\033[0m" << endl;
     cout << "\t\t    ____            _              _\n" <<      
             "\t\t   |  _ \\ ___ _ __ | |_ __ _    __| | ___ \n" <<

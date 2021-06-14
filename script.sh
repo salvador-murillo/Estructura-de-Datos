@@ -90,16 +90,16 @@ mostrarSeccion(){
    do
         mostrarTitulo
         echo $"Secciones a mostrar:"$'\n'
-        j=0 # TEST para ocultar proyecto
+        # j=0 # TEST para ocultar proyecto
         for i in ${SECCIONES[@]};
         do
             
-            if [[ j -eq 10 ]]; then
-                echo $'\033[8;32m'"$i"
-            else
-                echo $'\033[32m'"$i" # FIXME dejar solo esta linea dentro del for
-            fi
-            j=$(($j+1))
+            # if [[ j -eq 10 ]]; then
+            #     echo $'\033[8;32m'"$i"
+            # else
+            echo $'\033[32m'"$i" # FIXME dejar solo esta linea dentro del for
+            # fi
+            # j=$(($j+1))
         done
 
         numeroSecU=0

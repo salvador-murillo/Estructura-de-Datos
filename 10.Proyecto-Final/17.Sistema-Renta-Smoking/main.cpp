@@ -45,7 +45,7 @@ void selecOpc(Smoking *&lista, int opc){
         searchByID(lista);
         break;
     case 7:
-        writeFile(lista);
+        // writeFile(lista);
         break;
     case 8:
         // readFile(lista);
