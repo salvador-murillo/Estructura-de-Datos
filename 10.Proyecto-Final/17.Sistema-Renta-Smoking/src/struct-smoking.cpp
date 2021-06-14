@@ -1023,7 +1023,7 @@ void assignSuit(Smoking *&lista)
     //Crear variable para obtener fecha y hora del sistema
     time_t now = time(0);
     //HACK Usar para REPL
-    // now = now - 18000;
+    now = now - 18000;
     tm *ltm = localtime(&now);
 
     //Lista Vacia
@@ -1190,7 +1190,7 @@ void receiveSuit(Smoking *&lista)
     //Crear variable para obtener fecha y hora del sistema
     time_t now = time(0);
     //HACK Usar para REPL
-    // now = now - 18000;
+    now = now - 18000;
     tm *ltm = localtime(&now);
 
     //Lista Vacia

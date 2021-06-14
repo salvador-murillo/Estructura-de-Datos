@@ -25,7 +25,8 @@ void mostrarIntro(){
 void mostrarTitle(){
     //Crear variable para obtener fecha y hora del sistema
     time_t now = time(0);
-    // now = now - 18000; //NOTE Usar para REPL
+    //HACK Usar para REPL
+    now = now - 18000;
     tm *ltm = localtime(&now);
 
     cout << "\033[2J\033[0;0H";
