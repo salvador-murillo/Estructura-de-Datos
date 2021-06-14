@@ -755,21 +755,21 @@ void editData(Smoking *actual, Smoking *&lista, int opc)
 void show1Suit(Smoking *lista)
 {
     cout << "\n \t\033[7;33m***** DATOS DEL TRAJE *****\033[0m\n";
-    cout << "\n\033[1;3;37mID:\033[0m " << lista->id;
-    cout << "  \033[1;3;37mSTATUS:\033[0m "; (lista->isAlquilado==false) ? cout << "\033[1;33mDisponible": cout << "\033[1;31mAlquilado";
-    cout << "\n\033[1;3;37m\nMARCA:\033[0m " << lista->marca;
-    cout << "\n\033[1;3;37mTALLA:\033[0m ";
+    cout << "\n\033[1;34mID:\033[0m " << lista->id;
+    cout << "  \033[1;34mSTATUS:\033[0m "; (lista->isAlquilado==false) ? cout << "\033[1;33mDisponible": cout << "\033[1;31mAlquilado";
+    cout << "\n\033[1;34m\nMARCA:\033[0m " << lista->marca;
+    cout << "\n\033[1;34mTALLA:\033[0m ";
     (lista->talla==1) ? cout << "Chica": (lista->talla==2) ? cout << "Mediana": cout << "Grande";
-    cout << " - \033[1;3;37mMODELO:\033[0m ";
+    cout << " - \033[1;34mMODELO:\033[0m ";
     (lista->modelo==1) ? cout << "Slim": (lista->modelo==2) ? cout << "Skinny": cout << "Comfort";
-    cout << "\n\033[1;3;37mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
-    cout << "\n\033[1;3;37m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
-    cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
-    cout << " - \033[1;3;37mENTREGA ESTIMADA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
-    cout << "\n\033[1;3;37m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
-    cout << "\n\033[1;3;37mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
-    cout << "\n\033[1;3;37mTOTAL ABONO    $\033[0m" << lista->totalAbono;
-    cout << "\n\033[1;3;37mTOTAL RESTANTE $\033[0m" << lista->totalRestante << endl;
+    cout << "\n\033[1;34mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
+    cout << "\n\033[1;34m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
+    cout << "\n\033[1;34mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
+    cout << " - \033[1;34mENTREGA ESTIMADA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
+    cout << "\n\033[1;34m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
+    cout << "\n\033[1;34mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
+    cout << "\n\033[1;34mTOTAL ABONO    $\033[0m" << lista->totalAbono;
+    cout << "\n\033[1;34mTOTAL RESTANTE $\033[0m" << lista->totalRestante << endl;
 }
 
 void showSuits(Smoking *lista)
@@ -792,21 +792,21 @@ void showSuits(Smoking *lista)
         mostrarTitle();
         cout << "\n\t\033[7;36m****** LISTA SMOKINGS ******\033[0m\n";
         cout << "\n\033[1;36mSmoking #"<< count;
-        cout << "  \033[1;3;37mID:\033[0m " << lista->id;
-        cout << "  \033[1;3;37mSTATUS:\033[0m "; (lista->isAlquilado==false) ? cout << "\033[1;33mDisponible": cout << "\033[1;31mAlquilado";
-        cout << "\n\033[1;3;37m\nMARCA:\033[0m " << lista->marca;
-        cout << "\n\033[1;3;37mTALLA:\033[0m ";
+        cout << "  \033[1;34mID:\033[0m " << lista->id;
+        cout << "  \033[1;34mSTATUS:\033[0m "; (lista->isAlquilado==false) ? cout << "\033[1;33mDisponible": cout << "\033[1;31mAlquilado";
+        cout << "\n\033[1;34m\nMARCA:\033[0m " << lista->marca;
+        cout << "\n\033[1;34mTALLA:\033[0m ";
         (lista->talla==1) ? cout << "Chica": (lista->talla==2) ? cout << "Mediana": cout << "Grande";
-        cout << " - \033[1;3;37mMODELO:\033[0m ";
+        cout << " - \033[1;34mMODELO:\033[0m ";
         (lista->modelo==1) ? cout << "Slim": (lista->modelo==2) ? cout << "Skinny": cout << "Comfort";
-        cout << "\n\033[1;3;37mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
-        cout << "\n\033[1;3;37m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
-        cout << "\n\033[1;3;37mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
-        cout << " - \033[1;3;37mENTREGA ESTIMADA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
-        cout << "\n\033[1;3;37m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
-        cout << "\n\033[1;3;37mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
-        cout << "\n\033[1;3;37mTOTAL ABONO    $\033[0m" << lista->totalAbono;
-        cout << "\n\033[1;3;37mTOTAL RESTANTE $\033[0m" << lista->totalRestante << endl;
+        cout << "\n\033[1;34mPRECIO DIARIO  $\033[0m" << lista->precioDiario;
+        cout << "\n\033[1;34m\nNOMBRE CLIENTE:\033[0m " << lista->nombreCliente;
+        cout << "\n\033[1;34mFECHA SALIDA\033[0m " << lista->fechaEntrega.day << "/" << lista->fechaEntrega.month << "/" << lista->fechaEntrega.year;
+        cout << " - \033[1;34mENTREGA ESTIMADA\033[0m " << lista->fechaDevolucion.day << "/" << lista->fechaDevolucion.month << "/" << lista->fechaDevolucion.year;
+        cout << "\n\033[1;34m\nDIAS A PRESTAMO:\033[0m " << lista->diasPrestamo;
+        cout << "\n\033[1;34mTOTAL A PAGAR  $\033[0m" << lista->totalPagar;
+        cout << "\n\033[1;34mTOTAL ABONO    $\033[0m" << lista->totalAbono;
+        cout << "\n\033[1;34mTOTAL RESTANTE $\033[0m" << lista->totalRestante << endl;
         count++;
         lista = lista->next;
         if(getNumberSuits>1)
